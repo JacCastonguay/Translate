@@ -66,7 +66,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiF-6q-E2c">
-                                <rect key="frame" x="8" y="226" width="360" height="216"/>
+                                <rect key="frame" x="7.5" y="225.5" width="360" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="Xmw-kh-hol"/>
                                     <constraint firstAttribute="height" constant="216" id="Xo2-o5-pSQ"/>
@@ -78,34 +78,22 @@
                                     <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="8xj-DJ-Ejp"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="xfg-rH-Shh" userLabel="Button Stack View">
-                                <rect key="frame" x="0.0" y="442" width="375" height="36"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfg-rH-Shh" userLabel="Button Stack View">
+                                <rect key="frame" x="0.0" y="441.5" width="375" height="36"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6I-YX-5aO">
-                                        <rect key="frame" x="0.0" y="0.0" width="46" height="36"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ob-Ew-ZLJ">
-                                        <rect key="frame" x="88.5" y="0.0" width="61" height="36"/>
-                                        <state key="normal" title="Hint Text"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-5p-w63">
-                                        <rect key="frame" x="191.5" y="0.0" width="95" height="36"/>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-5p-w63">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Hint Image"/>
+                                        <state key="normal" title="Use Hints"/>
                                         <connections>
                                             <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="fnu-Gv-CXd"/>
-                                            <segue destination="tOi-E2-zt5" kind="presentation" identifier="popUp" id="Pvj-Vj-dSe"/>
+                                            <segue destination="tOi-E2-zt5" kind="presentation" identifier="PopUp" id="eNC-1w-5EU"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bub-iC-Dca">
-                                        <rect key="frame" x="329" y="0.0" width="46" height="36"/>
-                                        <state key="normal" title="Button"/>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kM-6i-zW5">
-                                <rect key="frame" x="167" y="478" width="42" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="      " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kM-6i-zW5">
+                                <rect key="frame" x="174.5" y="477.5" width="26.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -124,9 +112,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h9i-Rh-eIt"/>
                         <connections>
-                            <outlet property="hintImageButton" destination="SbT-5p-w63" id="yv0-US-W6f"/>
                             <outlet property="hintLabel" destination="2kM-6i-zW5" id="acw-jn-Oiv"/>
-                            <outlet property="hintTextButton" destination="9Ob-Ew-ZLJ" id="NdD-XL-h2a"/>
+                            <outlet property="useHintsbutton" destination="SbT-5p-w63" id="yv0-US-W6f"/>
                             <outlet property="wordButton" destination="KiF-6q-E2c" id="hzz-08-e12"/>
                         </connections>
                     </view>

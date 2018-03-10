@@ -10,8 +10,7 @@ import UIKit
 
 class VocabCardView: UIView {
     @IBOutlet var wordButton:UIButton!
-    @IBOutlet var hintImageButton:UIButton!
-    @IBOutlet var hintTextButton:UIButton!
+    @IBOutlet var useHintsbutton:UIButton!
     @IBOutlet var hintLabel:UILabel!
     override func setNeedsDisplay() {
         super.setNeedsDisplay()
