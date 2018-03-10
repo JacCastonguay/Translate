@@ -69,17 +69,19 @@ class VocabCardViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "popUp" {
             
-            //maybe transfer word itself?
+            //set destination
             let destinationController = segue.destination as! HintImagePopUpController
+            //
             if (wordView.wordButton.currentTitle == vocabWord.englishWord) {
                 if let imageName = vocabWord.englishHint.imageName{
-                    destinationController.HintImage?.image = UIImage(named: imageName)
+                    destinationController.hintText = imageName
                 }
-                
             } else {
                 if let imageName = vocabWord.spanishHint.imageName{
-                    destinationController.HintImage?.image = UIImage(named: imageName)
-                }            }
+                    destinationController.hintText = imageName
+                }
+                
+            }
         }
         
     }

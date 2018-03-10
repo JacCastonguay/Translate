@@ -12,11 +12,14 @@ class HintImagePopUpController: UIViewController {
 
     @IBOutlet weak var BackButton: UIButton!
     @IBOutlet weak var HintImage: UIImageView!
+    var hintText:String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        if let hint = hintText {
+            HintImage.image = UIImage(named: hint)
+        }
     }
     
     @IBAction func ClosePopUp(_ sender: Any) {
