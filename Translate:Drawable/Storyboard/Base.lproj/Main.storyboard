@@ -51,7 +51,9 @@
                             <outlet property="delegate" destination="ohR-Ob-OK5" id="iHs-85-8kT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Folders" id="Vdk-1j-qV7"/>
+                    <navigationItem key="navigationItem" title="Folders" id="Vdk-1j-qV7">
+                        <barButtonItem key="rightBarButtonItem" image="plus" id="k8o-h3-MDb"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaM-uV-dPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,12 +100,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aup-eG-MXe">
+                                <rect key="frame" x="112" y="498" width="150" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwO-Ja-aRf">
+                                        <rect key="frame" x="0.0" y="0.0" width="72.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Wrong">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.019535477020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jM-4D-YNL">
+                                        <rect key="frame" x="77.5" y="0.0" width="72.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Correct">
+                                            <color key="titleColor" red="0.24181137388901544" green="0.89468013830068815" blue="0.25021625337908537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="VM8-lE-W3C"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="aup-eG-MXe" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="BQ9-gd-9Gt"/>
                             <constraint firstItem="KiF-6q-E2c" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="ISS-Cd-aEo"/>
                             <constraint firstItem="2kM-6i-zW5" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="Jib-DK-Sfh"/>
                             <constraint firstItem="xfg-rH-Shh" firstAttribute="leading" secondItem="h9i-Rh-eIt" secondAttribute="leading" id="QWN-MX-xgG"/>
+                            <constraint firstItem="aup-eG-MXe" firstAttribute="top" secondItem="2kM-6i-zW5" secondAttribute="bottom" id="ZZn-iK-xb2"/>
                             <constraint firstItem="xfg-rH-Shh" firstAttribute="top" secondItem="KiF-6q-E2c" secondAttribute="bottom" id="Zsb-i7-SpU"/>
                             <constraint firstItem="KiF-6q-E2c" firstAttribute="centerY" secondItem="TrQ-ry-uyx" secondAttribute="centerY" id="faO-U8-RKj"/>
                             <constraint firstItem="2kM-6i-zW5" firstAttribute="top" secondItem="xfg-rH-Shh" secondAttribute="bottom" id="ku6-PD-GdF"/>
@@ -149,7 +176,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.49622976741022851" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="02W-jZ-jpe" firstAttribute="centerY" secondItem="YuI-jO-kyG" secondAttribute="centerY" id="0eW-mK-Sxa"/>
                             <constraint firstItem="02W-jZ-jpe" firstAttribute="centerX" secondItem="YuI-jO-kyG" secondAttribute="centerX" id="YCL-hz-hly"/>
@@ -159,6 +186,7 @@
                     <connections>
                         <outlet property="BackButton" destination="moJ-6r-18S" id="UjW-1r-5R5"/>
                         <outlet property="HintImage" destination="02W-jZ-jpe" id="BVI-rG-11Q"/>
+                        <outlet property="backgroundView" destination="YuI-jO-kyG" id="ove-pQ-RpN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wl9-P8-o3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -186,5 +214,6 @@
     </scenes>
     <resources>
         <image name="notecard" width="750" height="450"/>
+        <image name="plus" width="16" height="16"/>
     </resources>
 </document>

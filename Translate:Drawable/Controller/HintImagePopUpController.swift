@@ -12,6 +12,7 @@ class HintImagePopUpController: UIViewController {
 
     @IBOutlet weak var BackButton: UIButton!
     @IBOutlet weak var HintImage: UIImageView!
+    @IBOutlet var backgroundView: UIView!
     var hintText:String?
     
     
@@ -20,6 +21,7 @@ class HintImagePopUpController: UIViewController {
         if let hint = hintText {
             HintImage.image = UIImage(named: hint)
         }
+        backgroundView.backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
     
     @IBAction func ClosePopUp(_ sender: Any) {
