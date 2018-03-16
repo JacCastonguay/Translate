@@ -14,7 +14,7 @@ class HintImagePopUpController: UIViewController {
     @IBOutlet weak var HintImage: UIImageView!
     @IBOutlet var backgroundView: UIView!
     var hintText:String?
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

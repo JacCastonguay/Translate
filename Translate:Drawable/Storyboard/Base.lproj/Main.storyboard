@@ -89,7 +89,6 @@
                                         <state key="normal" title="Use Hints"/>
                                         <connections>
                                             <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="fnu-Gv-CXd"/>
-                                            <segue destination="tOi-E2-zt5" kind="presentation" identifier="PopUp" id="eNC-1w-5EU"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -123,6 +122,10 @@
                                     <constraint firstAttribute="width" constant="150" id="VM8-lE-W3C"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BfP-oM-Wp2">
+                                <rect key="frame" x="67" y="77" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -139,6 +142,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h9i-Rh-eIt"/>
                         <connections>
+                            <outlet property="hintImage" destination="BfP-oM-Wp2" id="iqw-QA-IOC"/>
                             <outlet property="hintLabel" destination="2kM-6i-zW5" id="acw-jn-Oiv"/>
                             <outlet property="useHintsbutton" destination="SbT-5p-w63" id="yv0-US-W6f"/>
                             <outlet property="wordButton" destination="KiF-6q-E2c" id="hzz-08-e12"/>

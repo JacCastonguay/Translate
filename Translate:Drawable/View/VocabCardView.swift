@@ -12,9 +12,14 @@ class VocabCardView: UIView {
     @IBOutlet var wordButton:UIButton!
     @IBOutlet var useHintsbutton:UIButton!
     @IBOutlet var hintLabel:UILabel!
+    @IBOutlet var hintImage: UIImageView!
+    
     override func setNeedsDisplay() {
         super.setNeedsDisplay()
     }
+    
+    
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

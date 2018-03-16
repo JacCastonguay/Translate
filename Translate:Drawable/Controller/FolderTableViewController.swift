@@ -11,7 +11,7 @@ import UIKit
 class FolderTableViewController: UITableViewController {
 
     var vocabularyArray:[Word] = [
-        Word(englishWord: "To know", spanishWord: "Saber", englishHint: Hint(imageName: "cap"), spanishHint: Hint(phrase: "cuando se tiene una respuesta")),
+        Word(englishWord: "To know", spanishWord: "Saber", englishHint: Hint(), spanishHint: Hint(phrase: "cuando se tiene una respuesta", imageName: "cap")),
         Word(englishWord: "To Speak", spanishWord: "hablar", englishHint: Hint(phrase: "synonym: decir", imageName: "<man speaking photo>"), spanishHint: Hint(phrase:"usando su voz"))
         ]
     
