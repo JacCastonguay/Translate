@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="WordMO" representedClassName="WordMO" syncable="YES" codeGenerationType="class">
+        <attribute name="englishImageHint" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="englishTextHint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="englishWord" attributeType="String" syncable="YES"/>
+        <attribute name="spanishImageHint" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="spanishTextHint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spanishWord" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="WordMO" positionX="-63" positionY="-18" width="128" height="30"/>
+    </elements>
+</model>

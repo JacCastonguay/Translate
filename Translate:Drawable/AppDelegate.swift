@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    //Instance of the DB
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "TranslateDrawable")
+        container.loadPersistentStores(completionHandler: { (storeDescription,error) in
+            if let error = error as NSError? {
+                fatalError("unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    //Save said the context (the "notepad" of changes)
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
 }
 

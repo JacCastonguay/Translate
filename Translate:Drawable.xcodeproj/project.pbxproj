@@ -21,6 +21,7 @@
 		1C71840320466803002F28BD /* VocabCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C71840220466803002F28BD /* VocabCardViewController.swift */; };
 		1C7C696B2049171200C3A925 /* Sheptember.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C7C696A2049129000C3A925 /* Sheptember.ttf */; };
 		1C7C696D20491AAA00C3A925 /* lovely_eunike_hans.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1C7C696C20491AA100C3A925 /* lovely_eunike_hans.otf */; };
+		1C812513205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C812511205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		1C71840220466803002F28BD /* VocabCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabCardViewController.swift; sourceTree = "<group>"; };
 		1C7C696A2049129000C3A925 /* Sheptember.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sheptember.ttf; sourceTree = "<group>"; };
 		1C7C696C20491AA100C3A925 /* lovely_eunike_hans.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lovely_eunike_hans.otf; sourceTree = "<group>"; };
+		1C812512205B6F0500D10D4E /* TranslateDrawable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TranslateDrawable.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		1C6F6270203E7EDD00413FA7 = {
 			isa = PBXGroup;
 			children = (
+				1C812511205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld */,
 				1C6F627B203E7EDE00413FA7 /* Translate:Drawable */,
 				1C6F627A203E7EDE00413FA7 /* Products */,
 			);
@@ -213,6 +216,7 @@
 				1C6F6295203E84F800413FA7 /* Word.swift in Sources */,
 				1C71840120466784002F28BD /* VocabCardView.swift in Sources */,
 				1C0EC9FB2045161300147CF5 /* FolderTableViewCell.swift in Sources */,
+				1C812513205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld in Sources */,
 				1C0DB26E2053582200BC4B25 /* HintImagePopUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +402,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1C812511205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1C812512205B6F0500D10D4E /* TranslateDrawable.xcdatamodel */,
+			);
+			currentVersion = 1C812512205B6F0500D10D4E /* TranslateDrawable.xcdatamodel */;
+			path = TranslateDrawable.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1C6F6271203E7EDD00413FA7 /* Project object */;
 }
