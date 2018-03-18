@@ -13,37 +13,37 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
 
     var word: WordMO!
     
-    @IBOutlet var EnglishWordField: RoundedTextField! {
+    @IBOutlet var englishWordField: RoundedTextField! {
         didSet {
-            EnglishWordField.tag = 1
-            EnglishWordField.becomeFirstResponder()
-            EnglishWordField.delegate = self
+            englishWordField.tag = 1
+            englishWordField.becomeFirstResponder()
+            englishWordField.delegate = self
         }
     }
     
-    @IBOutlet var HintForEnglishWordField: RoundedTextField! {
+    @IBOutlet var hintForEnglishWordField: RoundedTextField! {
         didSet {
-            HintForEnglishWordField.tag = 2
-            HintForEnglishWordField.delegate = self
+            hintForEnglishWordField.tag = 2
+            hintForEnglishWordField.delegate = self
         }
     }
-    @IBOutlet var HintImageForEnglishWord: UIImageView!
+    @IBOutlet var hintImageForEnglishWord: UIImageView!
     
     @IBOutlet var spanishWordField: RoundedTextField! {
         didSet {
-            spanishWordField.tag = 2
+            spanishWordField.tag = 3
             spanishWordField.delegate = self
         }
     }
     
-    @IBOutlet var HintForSpanishWordField: RoundedTextField! {
+    @IBOutlet var hintForSpanishWordField: RoundedTextField! {
         didSet {
-            HintForSpanishWordField.tag = 2
-            HintForSpanishWordField.delegate = self
+            hintForSpanishWordField.tag = 4
+            hintForSpanishWordField.delegate = self
         }
     }
     
-    @IBOutlet var HintImageForSpanishWord: UIImageView!
+    @IBOutlet var hintImageForSpanishWord: UIImageView!
 
     
     override func viewDidLoad() {
@@ -63,18 +63,114 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         // Dispose of any resources that can be recreated.
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 || indexPath.row == 7 {
+            //Instantiate pop up Alert (Giving it a message)
+            let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo source", preferredStyle: .actionSheet)
+            //Instantiate an alert action (camera choice)(need to add it to photoSourceRequestController after)
+            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    let imagePicker = UIImagePickerController()
+                    imagePicker.delegate = self
+                    imagePicker.allowsEditing = false
+                    //this is the part that makes it a camera
+                    imagePicker.sourceType = .camera
+                    
+                    self.present(imagePicker, animated: true, completion:  nil)
+                }
+            })
+            //Instantiate another alert action (photo library choice)
+            let photoLibraryAction = UIAlertAction(title: "Photo library", style: .default, handler: { (action) in
+                if UIImagePickerController.isSourceTypeAvailable( .photoLibrary) {
+                    let imagePicker = UIImagePickerController()
+                    imagePicker.delegate = self
+                    imagePicker.allowsEditing = false
+                    //this part makes it the photoLibrary
+                    imagePicker.sourceType = .photoLibrary
+                    
+                    self.present(imagePicker, animated: true, completion: nil)
+                }
+            })
+            // Add these alert actions to the controller so we can pick the choices
+            photoSourceRequestController.addAction(cameraAction)
+            photoSourceRequestController.addAction(photoLibraryAction)
+            //Make controller visible
+            present(photoSourceRequestController, animated: true, completion:  nil)
+        }
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextTextField = view.viewWithTag(textField.tag + 1) {
+            textField.resignFirstResponder()
+            nextTextField.becomeFirstResponder()
+        }
+        
+        return true
+    }
+    //recall, action need to be set, just like outlets, sender being ANyObject just means the type accepted.
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+        //If anything is empty pop up an alert controller
+        if englishWordField.text == "" || spanishWordField.text == "" {
+            let alertController = UIAlertController(title: "Oops", message: "Please enter both English definition and Spanish definition", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        //Top line is getting AppDelegate object
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            word = WordMO(context: appDelegate.persistentContainer.viewContext)
+            word.englishWord = englishWordField.text
+            word.englishTextHint = hintForEnglishWordField.text
+            word.spanishWord = spanishWordField.text
+            word.spanishTextHint = hintForSpanishWordField.text
+            
+            if let img = hintImageForEnglishWord.image {
+                //This lets us get the data in the form of PNG
+                word.englishImageHint = UIImagePNGRepresentation(img)
+            }
+            if let img = hintImageForSpanishWord.image {
+                word.spanishImageHint = UIImagePNGRepresentation(img)
+            }
+            appDelegate.saveContext()
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
     
-    // MARK: - Table view data source
-
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            //temperary hard code for spanish Hint image until I can differentiate
+            hintImageForSpanishWord.image = selectedImage
+            hintImageForSpanishWord.contentMode = .scaleAspectFill
+            hintImageForSpanishWord.clipsToBounds = true
+        }
+        
+        let leadingConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .leading, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .leading, multiplier: 1, constant: 0)
+        leadingConstraint.isActive = true
+        
+        let trailingConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .trailing, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .trailing, multiplier: 1, constant: 0)
+        trailingConstraint.isActive = true
+        
+        let topConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .top, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .top, multiplier: 1, constant: 0)
+        topConstraint.isActive = true
+        
+        let bottomConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .bottom, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .bottom, multiplier: 1, constant: 0)
+        bottomConstraint.isActive = true
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 8
     }
 
     /*
