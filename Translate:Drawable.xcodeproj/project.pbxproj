@@ -10,7 +10,8 @@
 		1C0DB26E2053582200BC4B25 /* HintImagePopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0DB26D2053582200BC4B25 /* HintImagePopUpController.swift */; };
 		1C0DB270205368DE00BC4B25 /* HintImagePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0DB26F205368DE00BC4B25 /* HintImagePopUp.swift */; };
 		1C0EC9FB2045161300147CF5 /* FolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EC9FA2045161300147CF5 /* FolderTableViewCell.swift */; };
-		1C123D47204D02780046B804 /* Hint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C123D46204D02780046B804 /* Hint.swift */; };
+		1C53264E205DC37F0007FECC /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53264D205DC37F0007FECC /* RoundedTextField.swift */; };
+		1C532650205DC5750007FECC /* NewWordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53264F205DC5750007FECC /* NewWordController.swift */; };
 		1C6F627D203E7EDE00413FA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6F627C203E7EDE00413FA7 /* AppDelegate.swift */; };
 		1C6F6282203E7EDE00413FA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6F6280203E7EDE00413FA7 /* Main.storyboard */; };
 		1C6F6284203E7EDE00413FA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C6F6283203E7EDE00413FA7 /* Assets.xcassets */; };
@@ -28,7 +29,8 @@
 		1C0DB26D2053582200BC4B25 /* HintImagePopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintImagePopUpController.swift; sourceTree = "<group>"; };
 		1C0DB26F205368DE00BC4B25 /* HintImagePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintImagePopUp.swift; sourceTree = "<group>"; };
 		1C0EC9FA2045161300147CF5 /* FolderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTableViewCell.swift; sourceTree = "<group>"; };
-		1C123D46204D02780046B804 /* Hint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hint.swift; sourceTree = "<group>"; };
+		1C53264D205DC37F0007FECC /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		1C53264F205DC5750007FECC /* NewWordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordController.swift; sourceTree = "<group>"; };
 		1C6F6279203E7EDE00413FA7 /* Translate:Drawable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Translate:Drawable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6F627C203E7EDE00413FA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C6F6281203E7EDE00413FA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				1C6F6294203E84F800413FA7 /* Word.swift */,
-				1C123D46204D02780046B804 /* Hint.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +112,7 @@
 				1C0EC9FA2045161300147CF5 /* FolderTableViewCell.swift */,
 				1C71840020466784002F28BD /* VocabCardView.swift */,
 				1C0DB26F205368DE00BC4B25 /* HintImagePopUp.swift */,
+				1C53264D205DC37F0007FECC /* RoundedTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				1C6F6292203E82AA00413FA7 /* FolderTableViewController.swift */,
+				1C53264F205DC5750007FECC /* NewWordController.swift */,
 				1C71840220466803002F28BD /* VocabCardViewController.swift */,
 				1C0DB26D2053582200BC4B25 /* HintImagePopUpController.swift */,
 			);
@@ -208,10 +211,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C123D47204D02780046B804 /* Hint.swift in Sources */,
 				1C71840320466803002F28BD /* VocabCardViewController.swift in Sources */,
+				1C532650205DC5750007FECC /* NewWordController.swift in Sources */,
 				1C6F627D203E7EDE00413FA7 /* AppDelegate.swift in Sources */,
 				1C0DB270205368DE00BC4B25 /* HintImagePopUp.swift in Sources */,
+				1C53264E205DC37F0007FECC /* RoundedTextField.swift in Sources */,
 				1C6F6293203E82AB00413FA7 /* FolderTableViewController.swift in Sources */,
 				1C6F6295203E84F800413FA7 /* Word.swift in Sources */,
 				1C71840120466784002F28BD /* VocabCardView.swift in Sources */,

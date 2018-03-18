@@ -12,16 +12,16 @@ class VocabCardViewController: UIViewController {
 
     @IBOutlet var wordView:VocabCardView!
     
-    var vocabWord: Word = Word(englishWord:"", spanishWord:"", englishHint:Hint(), spanishHint:Hint())
+    var vocabWord: WordMO! // = WordMO(englishWord:"", spanishWord:"", englishTextHint: "", englishImageHint: nil, spanishTextHint: "", spanishImageHint: nil)
     var visibleWord:SingleLang = SingleLang(word: "")
-    var OtherWord:SingleLang = SingleLang(word: "")
+    var OtherWord:SingleLang = SingleLang(word: "", textHint: "")
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //set visible word & otherWord
-        visibleWord = SingleLang(word: vocabWord.englishWord, hint: vocabWord.englishHint)
-        OtherWord = SingleLang(word: vocabWord.spanishWord, hint: vocabWord.spanishHint)
+        visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
+        OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
         //Set views&button
         UpdateViews()
 
@@ -75,13 +75,13 @@ class VocabCardViewController: UIViewController {
         //Set views&button
         wordView.wordButton.setTitle(visibleWord.word, for: .normal)
         //NOTE: when switching to MOs UIImage will need to be found by data not named
-        if let visibleImageName = visibleWord.hint?.imageName {
-            wordView.hintImage.image = UIImage(named: visibleImageName)
+        if let visibleImage = visibleWord.imageHint {
+            wordView.hintImage.image = UIImage(data: visibleImage as Data)
         } else {
             wordView.hintImage.image = nil
         }
         wordView.hintImage?.alpha = 0
-        if let phrase = visibleWord.hint?.phrase {
+        if let phrase = visibleWord.textHint {
             wordView.hintLabel!.text = phrase
         } else {
             wordView.hintLabel!.text = ""
@@ -97,11 +97,13 @@ class VocabCardViewController: UIViewController {
     
     class SingleLang {
         var word:String
-        var hint:Hint?
+        var textHint:String?
+        var imageHint:Data?
         
-        init(word: String, hint:Hint? = nil){
+        init(word: String, textHint:String? = "", imageHint:Data? = nil){
             self.word = word
-            self.hint = hint
+            self.textHint = textHint
+            self.imageHint = imageHint
         }
         
         
