@@ -12,6 +12,7 @@ import UIKit
 class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var word: WordMO!
+    var photoRow:Int!
     
     @IBOutlet var englishWordField: RoundedTextField! {
         didSet {
@@ -65,6 +66,8 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 3 || indexPath.row == 7 {
+            
+            photoRow = indexPath.row
             //Instantiate pop up Alert (Giving it a message)
             let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo source", preferredStyle: .actionSheet)
             //Instantiate an alert action (camera choice)(need to add it to photoSourceRequestController after)
@@ -140,23 +143,24 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        let viewForThisImage = photoRow == 3 ? hintImageForEnglishWord! : hintImageForSpanishWord!
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             //temperary hard code for spanish Hint image until I can differentiate
-            hintImageForSpanishWord.image = selectedImage
-            hintImageForSpanishWord.contentMode = .scaleAspectFill
-            hintImageForSpanishWord.clipsToBounds = true
+            viewForThisImage.image = selectedImage
+            viewForThisImage.contentMode = .scaleAspectFill
+            viewForThisImage.clipsToBounds = true
         }
         
-        let leadingConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .leading, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .leading, multiplier: 1, constant: 0)
+        let leadingConstraint = NSLayoutConstraint(item: viewForThisImage, attribute: .leading, relatedBy: .equal, toItem: viewForThisImage.superview, attribute: .leading, multiplier: 1, constant: 0)
         leadingConstraint.isActive = true
         
-        let trailingConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .trailing, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .trailing, multiplier: 1, constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: viewForThisImage, attribute: .trailing, relatedBy: .equal, toItem: viewForThisImage.superview, attribute: .trailing, multiplier: 1, constant: 0)
         trailingConstraint.isActive = true
         
-        let topConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .top, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .top, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: viewForThisImage, attribute: .top, relatedBy: .equal, toItem: viewForThisImage.superview, attribute: .top, multiplier: 1, constant: 0)
         topConstraint.isActive = true
         
-        let bottomConstraint = NSLayoutConstraint(item: hintImageForSpanishWord, attribute: .bottom, relatedBy: .equal, toItem: hintImageForSpanishWord.superview, attribute: .bottom, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: viewForThisImage, attribute: .bottom, relatedBy: .equal, toItem: viewForThisImage.superview, attribute: .bottom, multiplier: 1, constant: 0)
         bottomConstraint.isActive = true
         
         dismiss(animated: true, completion: nil)
