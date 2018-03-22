@@ -10,13 +10,13 @@ import Foundation
 class Word {
     var englishWord: String
     var spanishWord: String
-    var spanishTextHint: String?
+    var spanishTextHint: String
     var spanishImageHint:Data?
-    var englishTextHint: String?
+    var englishTextHint: String
     var englishImageHint:Data?
 
 
-    init(englishWord: String, spanishWord: String, spanishTextHint:String? = "", spanishImageHint:Data? = nil, englishTextHint:String? = "", englishImageHint:Data? = nil){
+    init(englishWord: String, spanishWord: String, spanishTextHint:String = "", spanishImageHint:Data? = nil, englishTextHint:String = "", englishImageHint:Data? = nil){
         self.englishWord = englishWord
         self.spanishWord = spanishWord
         self.spanishTextHint = ""

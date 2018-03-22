@@ -50,6 +50,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //Config navigation bar appearance
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.shadowImage = UIImage()

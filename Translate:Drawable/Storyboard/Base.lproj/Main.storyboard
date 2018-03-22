@@ -329,6 +329,7 @@
                         <outlet property="englishWordField" destination="DMN-vr-gSD" id="HyV-Ey-WtA"/>
                         <outlet property="imageHintForEnglishWord" destination="myy-6I-tEO" id="QUq-hy-4Rq"/>
                         <outlet property="imageHintForSpanishWord" destination="oz2-Tl-8ek" id="2kE-Cp-pDE"/>
+                        <outlet property="spanishWordField" destination="iz3-HT-BBZ" id="8P9-xV-2RD"/>
                         <outlet property="textHintForEnglishWord" destination="Gw6-dj-lZV" id="jCD-Sp-5Co"/>
                         <outlet property="textHintForSpanishWord" destination="oVj-Cc-0V5" id="yQU-Jy-OtR"/>
                     </connections>
