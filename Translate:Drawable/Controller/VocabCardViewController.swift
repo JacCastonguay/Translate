@@ -37,6 +37,14 @@ class VocabCardViewController: UIViewController {
         case 2?:
             wordView.hintLabel?.alpha = 1
             wordView.hintImage?.alpha = 1
+        case 3?:
+            //right
+            if vocabWord.timesRight < 3{
+                if let appDelegate = (UIApplication.shared.delegate as? AppDelegate){
+                    vocabWord.timesRight += 1
+                    appDelegate.saveContext()
+                }
+            }
         default:
             return
         }

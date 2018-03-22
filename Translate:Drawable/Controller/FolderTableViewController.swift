@@ -12,6 +12,7 @@ import CoreData
 class FolderTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var fetchResultController: NSFetchedResultsController<WordMO>!
+    var timesRightGoal = 3
     
     var vocabularyArray:[WordMO] = []
 //        Word(englishWord: "To know", spanishWord: "Saber", englishHint: Hint(), spanishHint: Hint(phrase: "cuando se tiene una respuesta", imageName: "cap")),
@@ -71,6 +72,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
 
         // Configure the cell...
         cell.folderName.text = vocabularyArray[indexPath.row].englishWord
+        cell.timesRight.text = String(vocabularyArray[indexPath.row].timesRight) + "/" + String(timesRightGoal)
 
         return cell
     }

@@ -128,6 +128,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
             word.englishTextHint = textHintForSpanishWord.text
             word.spanishWord = spanishWordField.text
             word.spanishTextHint = textHintForEnglishWord.text
+            word.timesRight = 0
             
             if let img = imageHintForSpanishWord.image {
                 //This lets us get the data in the form of PNG

@@ -10,6 +10,7 @@ import UIKit
 
 class FolderTableViewCell: UITableViewCell {
     @IBOutlet var folderName: UILabel!
+    @IBOutlet var timesRight: UILabel!
     
     
     

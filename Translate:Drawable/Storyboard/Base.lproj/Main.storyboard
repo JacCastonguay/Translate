@@ -33,15 +33,24 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9d-a2-ejc">
+                                            <rect key="frame" x="327" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="GGy-iF-e3K" secondAttribute="trailing" id="8TP-J1-x5n"/>
                                         <constraint firstItem="GGy-iF-e3K" firstAttribute="top" secondItem="VdA-aB-A3H" secondAttribute="topMargin" id="cAz-wY-fth"/>
+                                        <constraint firstItem="L9d-a2-ejc" firstAttribute="trailing" secondItem="VdA-aB-A3H" secondAttribute="trailingMargin" constant="10" id="h9C-Xd-fac"/>
+                                        <constraint firstItem="L9d-a2-ejc" firstAttribute="centerY" secondItem="VdA-aB-A3H" secondAttribute="centerY" id="jPo-dx-DGY"/>
                                         <constraint firstItem="GGy-iF-e3K" firstAttribute="leading" secondItem="VdA-aB-A3H" secondAttribute="leadingMargin" id="xkH-JW-QQE"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="folderName" destination="GGy-iF-e3K" id="vC5-eT-K8J"/>
+                                    <outlet property="timesRight" destination="L9d-a2-ejc" id="TRI-ma-rJW"/>
                                     <segue destination="Bs7-5q-wDp" kind="show" identifier="showVocabCard" id="G4Q-bJ-zp6"/>
                                 </connections>
                             </tableViewCell>
@@ -379,13 +388,16 @@
                                             <color key="titleColor" red="1" green="0.0" blue="0.019535477020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jM-4D-YNL">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jM-4D-YNL">
                                         <rect key="frame" x="77.5" y="0.0" width="72.5" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Correct">
                                             <color key="titleColor" red="0.24181137388901544" green="0.89468013830068815" blue="0.25021625337908537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchDown" id="N0Z-aR-bWs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -414,8 +426,10 @@
                         <connections>
                             <outlet property="hintImage" destination="BfP-oM-Wp2" id="iqw-QA-IOC"/>
                             <outlet property="hintLabel" destination="2kM-6i-zW5" id="acw-jn-Oiv"/>
+                            <outlet property="rightButton" destination="8jM-4D-YNL" id="jTe-Fk-Nry"/>
                             <outlet property="useHintsbutton" destination="SbT-5p-w63" id="yv0-US-W6f"/>
                             <outlet property="wordButton" destination="KiF-6q-E2c" id="hzz-08-e12"/>
+                            <outlet property="wrongButton" destination="FwO-Ja-aRf" id="dhE-81-Q5J"/>
                         </connections>
                     </view>
                     <connections>

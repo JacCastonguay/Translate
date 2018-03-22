@@ -24,4 +24,5 @@ class Word {
         self.englishTextHint = ""
         self.englishImageHint = englishImageHint
     }
+    
 }
