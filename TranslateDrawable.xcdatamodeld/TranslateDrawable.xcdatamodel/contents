@@ -9,6 +9,6 @@
         <attribute name="spanishWord" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="WordMO" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="WordMO" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

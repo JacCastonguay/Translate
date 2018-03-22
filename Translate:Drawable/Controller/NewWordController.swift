@@ -22,13 +22,13 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         }
     }
     
-    @IBOutlet var hintForEnglishWordField: RoundedTextField! {
+    @IBOutlet var textHintForSpanishWord: RoundedTextField! {
         didSet {
-            hintForEnglishWordField.tag = 2
-            hintForEnglishWordField.delegate = self
+            textHintForSpanishWord.tag = 2
+            textHintForSpanishWord.delegate = self
         }
     }
-    @IBOutlet var hintImageForEnglishWord: UIImageView!
+    @IBOutlet var imageHintForSpanishWord: UIImageView!
     
     @IBOutlet var spanishWordField: RoundedTextField! {
         didSet {
@@ -37,14 +37,14 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         }
     }
     
-    @IBOutlet var hintForSpanishWordField: RoundedTextField! {
+    @IBOutlet var textHintForEnglishWord: RoundedTextField! {
         didSet {
-            hintForSpanishWordField.tag = 4
-            hintForSpanishWordField.delegate = self
+            textHintForEnglishWord.tag = 4
+            textHintForEnglishWord.delegate = self
         }
     }
     
-    @IBOutlet var hintImageForSpanishWord: UIImageView!
+    @IBOutlet var imageHintForEnglishWord: UIImageView!
 
     
     override func viewDidLoad() {
@@ -125,16 +125,21 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             word = WordMO(context: appDelegate.persistentContainer.viewContext)
             word.englishWord = englishWordField.text
-            word.englishTextHint = hintForEnglishWordField.text
+            word.englishTextHint = textHintForSpanishWord.text
             word.spanishWord = spanishWordField.text
-            word.spanishTextHint = hintForSpanishWordField.text
+            word.spanishTextHint = textHintForEnglishWord.text
             
-            if let img = hintImageForEnglishWord.image {
+            if let img = imageHintForSpanishWord.image {
                 //This lets us get the data in the form of PNG
-                word.englishImageHint = UIImagePNGRepresentation(img)
+                if img != UIImage(named: "photo"){
+                   word.englishImageHint = UIImagePNGRepresentation(img)
+                }
+                
             }
-            if let img = hintImageForSpanishWord.image {
-                word.spanishImageHint = UIImagePNGRepresentation(img)
+            if let img = imageHintForEnglishWord.image {
+                if img != UIImage(named: "photo"){
+                    word.spanishImageHint = UIImagePNGRepresentation(img)
+                }
             }
             appDelegate.saveContext()
         }
@@ -143,7 +148,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        let viewForThisImage = photoRow == 3 ? hintImageForEnglishWord! : hintImageForSpanishWord!
+        let viewForThisImage = photoRow == 3 ? imageHintForSpanishWord! : imageHintForEnglishWord!
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             //temperary hard code for spanish Hint image until I can differentiate
             viewForThisImage.image = selectedImage
