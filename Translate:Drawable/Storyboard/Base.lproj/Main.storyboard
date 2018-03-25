@@ -347,12 +347,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiF-6q-E2c">
+                            <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KiF-6q-E2c">
                                 <rect key="frame" x="7.5" y="225.5" width="360" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="Xmw-kh-hol"/>
                                     <constraint firstAttribute="height" constant="216" id="Xo2-o5-pSQ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
                                 <state key="normal" title="Button1" backgroundImage="notecard">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
