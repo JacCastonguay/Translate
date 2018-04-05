@@ -445,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rR-3f-235" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1840.8" y="-152.47376311844079"/>
+            <point key="canvasLocation" x="1834" y="-152"/>
         </scene>
         <!--Hint Image Pop Up Controller-->
         <scene sceneID="4ml-0M-B3Q">
@@ -625,7 +625,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="euE-pZ-J6a">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="euE-pZ-J6a">
                                 <rect key="frame" x="10" y="263.5" width="355" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -638,6 +638,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Reset My Password"/>
+                                <connections>
+                                    <action selector="resetPasswordWithSender:" destination="zMK-fZ-cMH" eventType="touchUpInside" id="K22-Fa-Ljf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -651,6 +654,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZDJ-Zn-Xkc"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="euE-pZ-J6a" id="jkr-74-yPu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zf-nl-3BL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -749,7 +755,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngf-dj-U1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="940" y="-967.4662668665668"/>
+            <point key="canvasLocation" x="1820" y="-824"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DKz-O2-qdM">
