@@ -61,6 +61,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Folders" id="Vdk-1j-qV7">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="LP9-ao-3kI">
+                            <connections>
+                                <action selector="logoutWithSender:" destination="ohR-Ob-OK5" id="dM5-WV-ZKh"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" id="k8o-h3-MDb">
                             <connections>
                                 <segue destination="rgO-0g-Oir" kind="presentation" id="HyM-WG-QuZ"/>
@@ -654,7 +659,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="IuZ-r6-fNQ">
             <objects>
-                <viewController id="dpf-0S-5IP" customClass="WelcomeViewController" customModule="Translate_Drawable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeView" id="dpf-0S-5IP" customClass="WelcomeViewController" customModule="Translate_Drawable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AAJ-al-hZj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

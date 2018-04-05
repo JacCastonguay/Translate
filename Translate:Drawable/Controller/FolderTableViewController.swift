@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class FolderTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
@@ -20,6 +21,25 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
 //        ]
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func logout(sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            let alertController = UIAlertController(title: "Logout Error", message: error.localizedDescription, preferredStyle: .alert)
+            let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(okayAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        
+        //Present the welcome view
+        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeView") {
+            UIApplication.shared.keyWindow?.rootViewController = viewController
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     
