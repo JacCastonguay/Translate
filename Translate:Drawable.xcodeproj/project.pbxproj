@@ -29,6 +29,7 @@
 		1CAB6CA22070382000CEE226 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA12070382000CEE226 /* SignUpViewController.swift */; };
 		1CAB6CA420745CFB00CEE226 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA320745CFB00CEE226 /* LoginViewController.swift */; };
 		1CAB6CA620745F8400CEE226 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA520745F8400CEE226 /* ResetPasswordController.swift */; };
+		1CF914D92086B31200CC26DA /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF914D82086B31200CC26DA /* UIImage+Scale.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		1CAB6CA12070382000CEE226 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1CAB6CA320745CFB00CEE226 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1CAB6CA520745F8400CEE226 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
+		1CF914D82086B31200CC26DA /* UIImage+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
 		A468E9A4A890B59C61052A80 /* Pods-Translate:Drawable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Translate:Drawable.release.xcconfig"; path = "Pods/Target Support Files/Pods-Translate:Drawable/Pods-Translate:Drawable.release.xcconfig"; sourceTree = "<group>"; };
 		C49F20E2AD98970FCEAB9C5A /* Pods_Translate_Drawable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Translate_Drawable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9157BE56144004038AE93C3 /* Pods-Translate:Drawable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Translate:Drawable.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Translate:Drawable/Pods-Translate:Drawable.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		1C6F627B203E7EDE00413FA7 /* Translate:Drawable */ = {
 			isa = PBXGroup;
 			children = (
+				1CF914D72086B2D500CC26DA /* Util */,
 				1C7C69692049126100C3A925 /* Resources */,
 				1C6F6291203E800900413FA7 /* Controller */,
 				1C6F6290203E7FF200413FA7 /* View */,
@@ -165,6 +168,14 @@
 				1CAB6CA520745F8400CEE226 /* ResetPasswordController.swift */,
 			);
 			path = AccountControllers;
+			sourceTree = "<group>";
+		};
+		1CF914D72086B2D500CC26DA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				1CF914D82086B31200CC26DA /* UIImage+Scale.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		806D7785B60CAADBC6F02CF0 /* Pods */ = {
@@ -267,12 +278,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Translate:Drawable/Pods-Translate:Drawable-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +335,7 @@
 			files = (
 				1CAB6CA420745CFB00CEE226 /* LoginViewController.swift in Sources */,
 				1C71840320466803002F28BD /* VocabCardViewController.swift in Sources */,
+				1CF914D92086B31200CC26DA /* UIImage+Scale.swift in Sources */,
 				1C532650205DC5750007FECC /* NewWordController.swift in Sources */,
 				1C6F627D203E7EDE00413FA7 /* AppDelegate.swift in Sources */,
 				1C0DB270205368DE00BC4B25 /* HintImagePopUp.swift in Sources */,

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import UIKit
+import Firebase
 
 class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -122,29 +122,101 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
             
             return
         }
-        //Top line is getting AppDelegate object
-        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-            word = WordMO(context: appDelegate.persistentContainer.viewContext)
-            word.englishWord = englishWordField.text
-            word.englishTextHint = textHintForSpanishWord.text
-            word.spanishWord = spanishWordField.text
-            word.spanishTextHint = textHintForEnglishWord.text
-            word.timesRight = 0
+        //Firebase upload stuff
+        
+        //Generate a Unique ID for the post and prepare te post DB reference
+        let postDatabaseRef = Database.database().reference().child("cards").childByAutoId()
+        
+        //Use the unique key as the image name and prepare the storage reference
+        let imageStorageRef = Storage.storage().reference().child("photos").child("\(postDatabaseRef.key).jpg")
+        
+        //Resize images
+        // TODO: Make images optional again.
+        
+        //if let scaled4EngWord = imageHintForEnglishWord.image{
+        //    let scaledImageHintForEnglishWord = scaled4EngWord.scale(newWidth: 640)
+        //}
+        let scaledImageHintForEnglishWord = imageHintForEnglishWord.image!.scale(newWidth: 640)
+        guard let imageData4Eng = UIImageJPEGRepresentation(scaledImageHintForEnglishWord, 0.9) else {
+            return
+        }
+
+        
+        //Create the file metadate
+        //right now we can only upload one photo at a time
+        let metadata4Eng = StorageMetadata()
+        metadata4Eng.contentType = "image/jpg"
+        
+        //Prepare the upload task
+        let uploadTask4Eng = imageStorageRef.putData(imageData4Eng, metadata: metadata4Eng)
+        
+        //Observe the upload status
+        uploadTask4Eng.observe(.success) { (snapshot) in
+            guard let displayName = Auth.auth().currentUser?.displayName else {
+                return
+            }
             
-            if let img = imageHintForSpanishWord.image {
-                //This lets us get the data in the form of PNG
-                if img != UIImage(named: "photo"){
-                   word.englishImageHint = UIImagePNGRepresentation(img)
-                }
+            //Add a reference to the DB
+            if let imageFileURL = snapshot.metadata?.downloadURL()?.absoluteString {
+                let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
+                
+                let card: [String : Any] = ["imageHintForEngFileURL": imageFileURL,
+                                            "user": displayName,
+                                            "EnglishWord": String(describing: self.englishWordField.text),
+                                            "SpanishWord": String(describing: self.spanishWordField.text),
+                                            "EnglishTextHint": String(describing: self.textHintForEnglishWord.text),
+                                            "SpanishTextHint": String(describing: self.textHintForSpanishWord.text),
+                                            "TimesRight": Int(0),
+                                            "Timestamp":timestamp
+                ]
+                
+                postDatabaseRef.setValue(card)
                 
             }
-            if let img = imageHintForEnglishWord.image {
-                if img != UIImage(named: "photo"){
-                    word.spanishImageHint = UIImagePNGRepresentation(img)
-                }
-            }
-            appDelegate.saveContext()
+            
+            self.dismiss(animated: true, completion: nil)
         }
+        
+        uploadTask4Eng.observe(.progress) { (snapshot) in
+            
+            let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
+            print("Uploading \(postDatabaseRef.key).jpg... \(percentComplete)% complete")
+        }
+        
+        uploadTask4Eng.observe(.failure) { (snapshot) in
+            
+            if let error = snapshot.error {
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+        
+        
+//This is local data way
+        //Top line is getting AppDelegate object
+//        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+//            word = WordMO(context: appDelegate.persistentContainer.viewContext)
+//            word.englishWord = englishWordField.text
+//            word.englishTextHint = textHintForSpanishWord.text
+//            word.spanishWord = spanishWordField.text
+//            word.spanishTextHint = textHintForEnglishWord.text
+//            word.timesRight = 0
+//
+//            if let img = imageHintForSpanishWord.image {
+//                //This lets us get the data in the form of PNG
+//                if img != UIImage(named: "photo"){
+//                   word.englishImageHint = UIImagePNGRepresentation(img)
+//                }
+//
+//            }
+//            if let img = imageHintForEnglishWord.image {
+//                if img != UIImage(named: "photo"){
+//                    word.spanishImageHint = UIImagePNGRepresentation(img)
+//                }
+//            }
+//            appDelegate.saveContext()
+//        }
         
         dismiss(animated: true, completion: nil)
     }
