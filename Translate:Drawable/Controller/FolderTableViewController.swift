@@ -210,6 +210,40 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             if newCards.count > 0 {
                 //Order in descending order (i.e. the latest card becomes the first card)
                 newCards.sort(by: {$0.timestamp > $1.timestamp})
+                //ADD newCards TO LOCAL DB (USE COMMENTED OUT CODE IN NEWWORDCONTROLLER TO TURN IT INTO A CARD)
+                //This is local data way
+                //Top line is getting AppDelegate object
+                for card in newCards {
+                    //Download Image
+                    
+                    
+                    
+                    var word: WordMO!
+                    if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                        word = WordMO(context: appDelegate.persistentContainer.viewContext)
+                        word.englishWord = card.englishWord
+                        word.englishTextHint = card.englishTextHint
+                        word.spanishWord = card.spanishWord
+                        word.spanishTextHint = card.spanishTextHint
+                        word.timesRight = 0
+                        
+//                        if let img = imageHintForSpanishWord.image {
+//                            //This lets us get the data in the form of PNG
+//                            if img != UIImage(named: "photo"){
+//                                word.englishImageHint = UIImagePNGRepresentation(img)
+//                            }
+//
+//                        }
+                        
+//                        if let img = imageHintForEnglishWord.image {
+//                            if img != UIImage(named: "photo"){
+//                                word.spanishImageHint = UIImagePNGRepresentation(img)
+//                            }
+//                        }
+                        appDelegate.saveContext()
+                    }
+                }
+
             }
             
             completionHandler(newCards)
