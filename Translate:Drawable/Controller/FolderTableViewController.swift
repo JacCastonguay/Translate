@@ -46,20 +46,33 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     override func viewDidLoad() {
         super.viewDidLoad()
         //Download images from Firebase
-        let postDatabaseRef = Database.database().reference().child("cards")
-        postDatabaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//        let postDatabaseRef = Database.database().reference().child("cards")
+//        postDatabaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//            print("Total number of posts: \(snapshot.childrenCount)")
+//            for item in snapshot.children.allObjects as! [DataSnapshot] {
+//                let postInfo = item.value as? [String: Any] ?? [:]
+//
+//                print("------")
+//                print("Post ID: \(item.key)")
+//                print("Image URL: \(postInfo["imageHintForEngFileURL"] ?? "")")
+//                print("user: \(postInfo["user"] ?? "")")
+//            }
+//
+//        })
+        //get recent cards from firebase
+        getRecentCards(limit: 3) { (newCards) in
             
-            print("Total number of posts: \(snapshot.childrenCount)")
-            for item in snapshot.children.allObjects as! [DataSnapshot] {
-                let postInfo = item.value as? [String: Any] ?? [:]
-                
-                print("------")
-                print("Post ID: \(item.key)")
-                print("Image URL: \(postInfo["imageHintForEngFileURL"] ?? "")")
-                print("user: \(postInfo["user"] ?? "")")
-            }
+            newCards.forEach({ (card) in
+                print("----------")
+                print("Post ID: \(card.postId)")
+                print("Image URL: \(card.imageHintForEngFileURL)")
+                print("User: \(card.user)")
+                print("English Word: \(card.englishWord)")
+                print("Spanish Word: \(card.spanishWord)")
+                })
             
-        })
+        }
 
         //Fetch request to get objs we want to see ples sortDescriptor on how we want to sort them (englishWord for now, will want something like "visibleWord" eventually when we can flip starting face up side)
         let fetchRequest: NSFetchRequest<WordMO> = WordMO.fetchRequest()
@@ -169,6 +182,40 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     //animate changes
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+    
+    //Pull posts from Firebase
+    func getRecentCards(start timestamp: Int? = nil, limit: UInt, completionHandler: @escaping([Card]) -> Void) {
+        var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
+        if let latestPostTimestamp = timestamp, latestPostTimestamp > 0 {
+            //If the timestamp is specified, we will get the posts with timestamps newer than the given value.
+            cardQuery = cardQuery.queryStarting(atValue: latestPostTimestamp + 1, childKey: Card.PostInfoKey.timestamp).queryLimited(toLast: limit)
+        } else {
+            //Otherwise, we will just get the most recent posts
+            cardQuery = cardQuery.queryLimited(toLast: limit)
+        }
+        
+        // Call Firebase API to retrieve the latest records
+        cardQuery.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            var newCards: [Card] = []
+            for item in snapshot.children.allObjects as! [DataSnapshot] {
+                let cardInfo = item.value as? [String: Any] ?? [:]
+                
+                if let card = Card(postId: item.key, postInfo: cardInfo) {
+                    newCards.append(card)
+                }
+            }
+            
+            if newCards.count > 0 {
+                //Order in descending order (i.e. the latest card becomes the first card)
+                newCards.sort(by: {$0.timestamp > $1.timestamp})
+            }
+            
+            completionHandler(newCards)
+        })
+        
+        
     }
 
     /*
