@@ -164,10 +164,10 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
                 
                 let card: [String : Any] = [Card.PostInfoKey.imageHintForEngFileURL: imageFileURL,
                                             Card.PostInfoKey.user: displayName,
-                                            Card.PostInfoKey.englishWord: String(describing: self.englishWordField.text),
-                                            Card.PostInfoKey.spanishWord: String(describing: self.spanishWordField.text),
-                                            Card.PostInfoKey.englishTextHint: String(describing: self.textHintForEnglishWord.text),
-                                            Card.PostInfoKey.spanishTextHint: String(describing: self.textHintForSpanishWord.text),
+                                            Card.PostInfoKey.englishWord: String(describing: self.englishWordField.text!),
+                                            Card.PostInfoKey.spanishWord: String(describing: self.spanishWordField.text!),
+                                            Card.PostInfoKey.englishTextHint: String(describing: self.textHintForEnglishWord.text!),
+                                            Card.PostInfoKey.spanishTextHint: String(describing: self.textHintForSpanishWord.text!),
                                             Card.PostInfoKey.timesRight: Int(0),
                                             Card.PostInfoKey.timestamp:timestamp
                 ]
