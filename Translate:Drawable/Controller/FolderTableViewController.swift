@@ -45,6 +45,21 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Download images from Firebase
+        let postDatabaseRef = Database.database().reference().child("cards")
+        postDatabaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            print("Total number of posts: \(snapshot.childrenCount)")
+            for item in snapshot.children.allObjects as! [DataSnapshot] {
+                let postInfo = item.value as? [String: Any] ?? [:]
+                
+                print("------")
+                print("Post ID: \(item.key)")
+                print("Image URL: \(postInfo["imageHintForEngFileURL"] ?? "")")
+                print("user: \(postInfo["user"] ?? "")")
+            }
+            
+        })
 
         //Fetch request to get objs we want to see ples sortDescriptor on how we want to sort them (englishWord for now, will want something like "visibleWord" eventually when we can flip starting face up side)
         let fetchRequest: NSFetchRequest<WordMO> = WordMO.fetchRequest()

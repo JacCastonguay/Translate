@@ -124,11 +124,13 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         }
         //Firebase upload stuff
         
-        //Generate a Unique ID for the post and prepare te post DB reference
-        let postDatabaseRef = Database.database().reference().child("cards").childByAutoId()
+        //Generate a Unique ID for the post and prepare te post DB
+        //this accesses .child("cards")
+        let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
         
         //Use the unique key as the image name and prepare the storage reference
-        let imageStorageRef = Storage.storage().reference().child("photos").child("\(postDatabaseRef.key).jpg")
+        //This accesses .child("photos")
+        let imageStorageRef = PostService.shared.PHOTO_STORAGE_REF.child("\(postDatabaseRef.key).jpg")
         
         //Resize images
         // TODO: Make images optional again.
@@ -160,14 +162,14 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
             if let imageFileURL = snapshot.metadata?.downloadURL()?.absoluteString {
                 let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
                 
-                let card: [String : Any] = ["imageHintForEngFileURL": imageFileURL,
-                                            "user": displayName,
-                                            "EnglishWord": String(describing: self.englishWordField.text),
-                                            "SpanishWord": String(describing: self.spanishWordField.text),
-                                            "EnglishTextHint": String(describing: self.textHintForEnglishWord.text),
-                                            "SpanishTextHint": String(describing: self.textHintForSpanishWord.text),
-                                            "TimesRight": Int(0),
-                                            "Timestamp":timestamp
+                let card: [String : Any] = [Card.PostInfoKey.imageHintForEngFileURL: imageFileURL,
+                                            Card.PostInfoKey.user: displayName,
+                                            Card.PostInfoKey.englishWord: String(describing: self.englishWordField.text),
+                                            Card.PostInfoKey.spanishWord: String(describing: self.spanishWordField.text),
+                                            Card.PostInfoKey.englishTextHint: String(describing: self.textHintForEnglishWord.text),
+                                            Card.PostInfoKey.spanishTextHint: String(describing: self.textHintForSpanishWord.text),
+                                            Card.PostInfoKey.timesRight: Int(0),
+                                            Card.PostInfoKey.timestamp:timestamp
                 ]
                 
                 postDatabaseRef.setValue(card)
