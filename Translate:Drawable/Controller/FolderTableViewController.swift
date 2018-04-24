@@ -213,10 +213,32 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 //ADD newCards TO LOCAL DB (USE COMMENTED OUT CODE IN NEWWORDCONTROLLER TO TURN IT INTO A CARD)
                 //This is local data way
                 //Top line is getting AppDelegate object
+                var cardImage: UIImage?
                 for card in newCards {
                     //Download Image
-                    
-                    
+                    //var cardImage: UIImage?
+                    if let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/translatedrawable.appspot.com/o/photos%2F-LAoulY_n_IDkGC9Y92m.jpg?alt=media&token=ca7b0711-3b3f-4958-a177-115f32fcc76b") {//card.imageHintForEngFileURL) {
+                        let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                            guard let imageData = data else {
+                                print("'imageData' was not set to 'data'") //Don't see
+                                return
+                            }
+                            print("URL is: \(url.absoluteString)")
+                            
+                            OperationQueue.main.addOperation {
+                                guard let image = UIImage(data: imageData) else {
+                                    print("'imagedata' failed turning into 'image'")
+                                    return }
+                                cardImage = image
+                            }
+                            
+                            if let err = error {
+                                print("OH NO! THERE WAS AN ERROR")
+                                print(err.localizedDescription)
+                            } else {print ("'error' is empty")}
+                        })
+                        downloadTask.resume()
+                    } else {print("url was not properly set")}
                     
                     var word: WordMO!
                     if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
@@ -227,6 +249,13 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                         word.spanishTextHint = card.spanishTextHint
                         word.timesRight = 0
                         
+                        if let img = cardImage {
+                            print("AN ATTEMP WAS MADE TO CONVERT img")
+                            word.englishImageHint = UIImageJPEGRepresentation(cardImage!, 0.9)//img, 0.9)
+                        } else {
+                            print("imageCard was empty when trying to convert to JPEG")
+                        }
+                        
 //                        if let img = imageHintForSpanishWord.image {
 //                            //This lets us get the data in the form of PNG
 //                            if img != UIImage(named: "photo"){
@@ -235,11 +264,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
 //
 //                        }
                         
-//                        if let img = imageHintForEnglishWord.image {
-//                            if img != UIImage(named: "photo"){
-//                                word.spanishImageHint = UIImagePNGRepresentation(img)
-//                            }
-//                        }
+
                         appDelegate.saveContext()
                     }
                 }

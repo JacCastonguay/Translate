@@ -140,6 +140,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         //}
         let scaledImageHintForEnglishWord = imageHintForEnglishWord.image!.scale(newWidth: 640)
         guard let imageData4Eng = UIImageJPEGRepresentation(scaledImageHintForEnglishWord, 0.9) else {
+            print("HA! you've activated my 'photo couldn't be turned to jpe card'")
             return
         }
 
@@ -188,6 +189,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         uploadTask4Eng.observe(.failure) { (snapshot) in
             
             if let error = snapshot.error {
+
                 print(error.localizedDescription)
             }
         }
