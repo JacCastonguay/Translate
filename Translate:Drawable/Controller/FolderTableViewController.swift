@@ -209,8 +209,12 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                             OperationQueue.main.addOperation {
                                 guard let image = UIImage(data: imageData) else {
                                     print("'imagedata' failed turning into 'image'")
-                                    return }
+                                    return
+                                    
+                                }
                                 cardImage = image
+                                //Comment out to fix multidownload bug???
+                                self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
                             }
                             
                             if let err = error {
@@ -221,7 +225,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                         downloadTask.resume()
                     } else {print("url was not properly set")}
                     
-                    self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
+                    //self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
                 }
 
             }
