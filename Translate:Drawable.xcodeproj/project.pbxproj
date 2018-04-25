@@ -13,6 +13,7 @@
 		1C0EC9FB2045161300147CF5 /* FolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EC9FA2045161300147CF5 /* FolderTableViewCell.swift */; };
 		1C53264E205DC37F0007FECC /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53264D205DC37F0007FECC /* RoundedTextField.swift */; };
 		1C532650205DC5750007FECC /* NewWordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53264F205DC5750007FECC /* NewWordController.swift */; };
+		1C5CE5A4208FC4390034A08D /* TimeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5CE5A3208FC4390034A08D /* TimeTracker.swift */; };
 		1C6F627D203E7EDE00413FA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6F627C203E7EDE00413FA7 /* AppDelegate.swift */; };
 		1C6F6282203E7EDE00413FA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6F6280203E7EDE00413FA7 /* Main.storyboard */; };
 		1C6F6284203E7EDE00413FA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C6F6283203E7EDE00413FA7 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		1C0EC9FA2045161300147CF5 /* FolderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTableViewCell.swift; sourceTree = "<group>"; };
 		1C53264D205DC37F0007FECC /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		1C53264F205DC5750007FECC /* NewWordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordController.swift; sourceTree = "<group>"; };
+		1C5CE5A3208FC4390034A08D /* TimeTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTracker.swift; sourceTree = "<group>"; };
 		1C6F6279203E7EDE00413FA7 /* Translate:Drawable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Translate:Drawable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6F627C203E7EDE00413FA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C6F6281203E7EDE00413FA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				1CF914D82086B31200CC26DA /* UIImage+Scale.swift */,
 				1C728F41208AC3F400BCA031 /* PostService.swift */,
 				1C728F43208BB3B700BCA031 /* CacheManager.swift */,
+				1C5CE5A3208FC4390034A08D /* TimeTracker.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				1C0EC9FB2045161300147CF5 /* FolderTableViewCell.swift in Sources */,
 				1CAB6CA0207031D400CEE226 /* WelcomeViewController.swift in Sources */,
 				1C812513205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld in Sources */,
+				1C5CE5A4208FC4390034A08D /* TimeTracker.swift in Sources */,
 				1CAB6CA22070382000CEE226 /* SignUpViewController.swift in Sources */,
 				1C0DB26E2053582200BC4B25 /* HintImagePopUpController.swift in Sources */,
 			);

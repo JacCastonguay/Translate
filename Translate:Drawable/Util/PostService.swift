@@ -15,15 +15,13 @@ final class PostService {
     //Firebase Storage Ref
     let PHOTO_STORAGE_REF: StorageReference = Storage.storage().reference().child("photos")
     
-//    func uploadImage(image: UIImage, completionHandler: @escaping() -> Void) {
+//    func updatTime(completionHandler: @escaping() -> Void) {
 //        //Generate a unique ID for the post and prepare the post DB reference
 //        let postDatabaseRef = POST_DB_REF.childByAutoId()
 //
 //        //Use the unique key as the image name and prepare the storage reference
 //        let imageStorageRef = PHOTO_STORAGE_REF.child("\(postDatabaseRef.key).jpg")
 //
-//        //Resize the image
-//        let scaledImage = image.scale(newWidth: 640.0)
 //
 //        guard let imageData4Eng = UIImageJPEGRepresentation(scaledImage, 0.9) else {
 //            return

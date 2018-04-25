@@ -16,9 +16,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     var timesRightGoal = 3
     
     var vocabularyArray:[WordMO] = []
-//        Word(englishWord: "To know", spanishWord: "Saber", englishHint: Hint(), spanishHint: Hint(phrase: "cuando se tiene una respuesta", imageName: "cap")),
-//        Word(englishWord: "To Speak", spanishWord: "hablar", englishHint: Hint(phrase: "synonym: decir", imageName: "<man speaking photo>"), spanishHint: Hint(phrase:"usando su voz"))
-//        ]
+
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
     }
@@ -45,23 +43,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Download images from Firebase
-//        let postDatabaseRef = Database.database().reference().child("cards")
-//        postDatabaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//            print("Total number of posts: \(snapshot.childrenCount)")
-//            for item in snapshot.children.allObjects as! [DataSnapshot] {
-//                let postInfo = item.value as? [String: Any] ?? [:]
-//
-//                print("------")
-//                print("Post ID: \(item.key)")
-//                print("Image URL: \(postInfo["imageHintForEngFileURL"] ?? "")")
-//                print("user: \(postInfo["user"] ?? "")")
-//            }
-//
-//        })
-        //get recent cards from firebase
-        getRecentCards(limit: 3) { (newCards) in
+        getRecentCards() { (newCards) in
             
             newCards.forEach({ (card) in
                 print("----------")
@@ -93,6 +75,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 print(error)
             }
         }
+        
     }
 
     
@@ -185,15 +168,16 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     }
     
     //Pull posts from Firebase
-    func getRecentCards(start timestamp: Int? = nil, limit: UInt, completionHandler: @escaping([Card]) -> Void) {
+    func getRecentCards(start timestamp: Int? = nil, completionHandler: @escaping([Card]) -> Void) {
         var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
-        if let latestPostTimestamp = timestamp, latestPostTimestamp > 0 {
+        //Timestamp is compared to zero, need to add a value for latest query check to keep in local db.
+        
+        let compareTime = TimeTracker.shared.ReadTime()
+        //if let latestPostTimestamp = timestamp, latestPostTimestamp > compareTime {
+            //TimeTracker.shared.WriteTime(newTime: String(latestPostTimestamp))
             //If the timestamp is specified, we will get the posts with timestamps newer than the given value.
-            cardQuery = cardQuery.queryStarting(atValue: latestPostTimestamp + 1, childKey: Card.PostInfoKey.timestamp).queryLimited(toLast: limit)
-        } else {
-            //Otherwise, we will just get the most recent posts
-            cardQuery = cardQuery.queryLimited(toLast: limit)
-        }
+            cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
+        //}
         
         // Call Firebase API to retrieve the latest records
         cardQuery.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -210,13 +194,11 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             if newCards.count > 0 {
                 //Order in descending order (i.e. the latest card becomes the first card)
                 newCards.sort(by: {$0.timestamp > $1.timestamp})
-                //ADD newCards TO LOCAL DB (USE COMMENTED OUT CODE IN NEWWORDCONTROLLER TO TURN IT INTO A CARD)
-                //This is local data way
-                //Top line is getting AppDelegate object
-                var cardImage: UIImage?
+
                 for card in newCards {
+                    TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
                     //Download Image
-                    //var cardImage: UIImage?
+                    var cardImage: UIImage?
                     if let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/translatedrawable.appspot.com/o/photos%2F-LAoulY_n_IDkGC9Y92m.jpg?alt=media&token=ca7b0711-3b3f-4958-a177-115f32fcc76b") {//card.imageHintForEngFileURL) {
                         let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                             guard let imageData = data else {
@@ -255,15 +237,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                         } else {
                             print("imageCard was empty when trying to convert to JPEG")
                         }
-                        
-//                        if let img = imageHintForSpanishWord.image {
-//                            //This lets us get the data in the form of PNG
-//                            if img != UIImage(named: "photo"){
-//                                word.englishImageHint = UIImagePNGRepresentation(img)
-//                            }
-//
-//                        }
-                        
 
                         appDelegate.saveContext()
                     }
@@ -273,8 +246,8 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             
             completionHandler(newCards)
         })
-        
-        
+        //Get rid of this when done debugging
+        //TimeTracker.shared.WriteTime(newTime: String(0))
     }
 
     /*
