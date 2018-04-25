@@ -221,24 +221,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                         downloadTask.resume()
                     } else {print("url was not properly set")}
                     
-                    var word: WordMO!
-                    if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-                        word = WordMO(context: appDelegate.persistentContainer.viewContext)
-                        word.englishWord = card.englishWord
-                        word.englishTextHint = card.englishTextHint
-                        word.spanishWord = card.spanishWord
-                        word.spanishTextHint = card.spanishTextHint
-                        word.timesRight = 0
-                        
-                        if let img = cardImage {
-                            print("AN ATTEMP WAS MADE TO CONVERT img")
-                            word.englishImageHint = UIImageJPEGRepresentation(cardImage!, 0.9)//img, 0.9)
-                        } else {
-                            print("imageCard was empty when trying to convert to JPEG")
-                        }
-
-                        appDelegate.saveContext()
-                    }
+                    self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
                 }
 
             }
