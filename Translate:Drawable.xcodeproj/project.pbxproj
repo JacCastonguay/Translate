@@ -130,8 +130,8 @@
 		1C6F628F203E7FD800413FA7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1C728F3F20896D6F00BCA031 /* Card.swift */,
 				1C6F6294203E84F800413FA7 /* Word.swift */,
+				1C728F3F20896D6F00BCA031 /* Card.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -199,13 +199,12 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                     TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
                     //Download Image
                     var cardImage: UIImage?
-                    if let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/translatedrawable.appspot.com/o/photos%2F-LAoulY_n_IDkGC9Y92m.jpg?alt=media&token=ca7b0711-3b3f-4958-a177-115f32fcc76b") {//card.imageHintForEngFileURL) {
+                    if let url = URL(string: card.imageHintForEngFileURL) {
                         let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                             guard let imageData = data else {
-                                print("'imageData' was not set to 'data'") //Don't see
                                 return
                             }
-                            print("URL is: \(url.absoluteString)")
+
                             
                             OperationQueue.main.addOperation {
                                 guard let image = UIImage(data: imageData) else {
@@ -302,5 +301,25 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         // Pass the selected object to the new view controller.
     }
     
+    func addLocaclly(englishWord:String, englishTextHint:String, spanishWord:String, spanishTextHint:String, englishImageHint:UIImage? = nil) -> Void {
+        var word: WordMO!
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            word = WordMO(context: appDelegate.persistentContainer.viewContext)
+            word.englishWord = englishWord
+            word.englishTextHint = englishTextHint
+            word.spanishWord = spanishWord
+            word.spanishTextHint = spanishTextHint
+            word.timesRight = 0
+            
+            if let img = englishImageHint {
+                print("AN ATTEMP WAS MADE TO CONVERT img")
+                word.englishImageHint = UIImageJPEGRepresentation(img, 0.9)
+            } else {
+                print("imageCard was empty when trying to convert to JPEG")
+            }
+            
+            appDelegate.saveContext()
+        }
+    }
 
 }
