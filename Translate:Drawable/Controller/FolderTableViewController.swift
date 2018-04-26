@@ -67,9 +67,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         //Pull down to refresh
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(getRecentCards), for: UIControlEvents.valueChanged)
-        
-
-
     }
 
     
@@ -114,7 +111,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             }
             completionHandler(true)
         }
-        //Add sharing, editing, more
         
         deleteAction.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
         

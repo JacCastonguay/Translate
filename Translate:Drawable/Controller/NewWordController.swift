@@ -132,12 +132,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         //This accesses .child("photos")
         let imageStorageRef = PostService.shared.PHOTO_STORAGE_REF.child("\(postDatabaseRef.key).jpg")
         
-        //Resize images
-        // TODO: Make images optional again.
-        
-        //if let scaled4EngWord = imageHintForEnglishWord.image{
-        //    let scaledImageHintForEnglishWord = scaled4EngWord.scale(newWidth: 640)
-        //}
+
         let scaledImageHintForEnglishWord = imageHintForEnglishWord.image!.scale(newWidth: 640)
         guard let imageData4Eng = UIImageJPEGRepresentation(scaledImageHintForEnglishWord, 0.9) else {
             print("HA! you've activated my 'photo couldn't be turned to jpe card'")
@@ -195,34 +190,6 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
             
         
         }
-        
-        
-        
-        
-//This is local data way
-        //Top line is getting AppDelegate object
-//        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-//            word = WordMO(context: appDelegate.persistentContainer.viewContext)
-//            word.englishWord = englishWordField.text
-//            word.englishTextHint = textHintForSpanishWord.text
-//            word.spanishWord = spanishWordField.text
-//            word.spanishTextHint = textHintForEnglishWord.text
-//            word.timesRight = 0
-//
-//            if let img = imageHintForSpanishWord.image {
-//                //This lets us get the data in the form of PNG
-//                if img != UIImage(named: "photo"){
-//                   word.englishImageHint = UIImagePNGRepresentation(img)
-//                }
-//
-//            }
-//            if let img = imageHintForEnglishWord.image {
-//                if img != UIImage(named: "photo"){
-//                    word.spanishImageHint = UIImagePNGRepresentation(img)
-//                }
-//            }
-//            appDelegate.saveContext()
-//        }
         
         dismiss(animated: true, completion: nil)
     }

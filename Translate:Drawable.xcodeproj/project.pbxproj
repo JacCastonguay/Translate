@@ -24,7 +24,6 @@
 		1C71840320466803002F28BD /* VocabCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C71840220466803002F28BD /* VocabCardViewController.swift */; };
 		1C728F4020896D6F00BCA031 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C728F3F20896D6F00BCA031 /* Card.swift */; };
 		1C728F42208AC3F400BCA031 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C728F41208AC3F400BCA031 /* PostService.swift */; };
-		1C728F44208BB3B700BCA031 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C728F43208BB3B700BCA031 /* CacheManager.swift */; };
 		1C7C696B2049171200C3A925 /* Sheptember.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C7C696A2049129000C3A925 /* Sheptember.ttf */; };
 		1C7C696D20491AAA00C3A925 /* lovely_eunike_hans.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1C7C696C20491AA100C3A925 /* lovely_eunike_hans.otf */; };
 		1C812513205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C812511205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld */; };
@@ -55,7 +54,6 @@
 		1C71840220466803002F28BD /* VocabCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabCardViewController.swift; sourceTree = "<group>"; };
 		1C728F3F20896D6F00BCA031 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		1C728F41208AC3F400BCA031 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
-		1C728F43208BB3B700BCA031 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		1C7C696A2049129000C3A925 /* Sheptember.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sheptember.ttf; sourceTree = "<group>"; };
 		1C7C696C20491AA100C3A925 /* lovely_eunike_hans.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lovely_eunike_hans.otf; sourceTree = "<group>"; };
 		1C812512205B6F0500D10D4E /* TranslateDrawable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TranslateDrawable.xcdatamodel; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			children = (
 				1CF914D82086B31200CC26DA /* UIImage+Scale.swift */,
 				1C728F41208AC3F400BCA031 /* PostService.swift */,
-				1C728F43208BB3B700BCA031 /* CacheManager.swift */,
 				1C5CE5A3208FC4390034A08D /* TimeTracker.swift */,
 			);
 			path = Util;
@@ -358,7 +355,6 @@
 				1C6F6295203E84F800413FA7 /* Word.swift in Sources */,
 				1CAB6CA620745F8400CEE226 /* ResetPasswordController.swift in Sources */,
 				1C71840120466784002F28BD /* VocabCardView.swift in Sources */,
-				1C728F44208BB3B700BCA031 /* CacheManager.swift in Sources */,
 				1C0EC9FB2045161300147CF5 /* FolderTableViewCell.swift in Sources */,
 				1CAB6CA0207031D400CEE226 /* WelcomeViewController.swift in Sources */,
 				1C812513205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld in Sources */,

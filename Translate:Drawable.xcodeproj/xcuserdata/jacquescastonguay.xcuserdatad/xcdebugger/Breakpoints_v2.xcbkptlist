@@ -6,11 +6,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Translate:Drawable/Controller/VocabCardViewController.swift"
-            timestampString = "544046118.895255"
+            timestampString = "546236717.045628"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -22,11 +22,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Translate:Drawable/Controller/VocabCardViewController.swift"
-            timestampString = "544046118.8961591"
+            timestampString = "546236717.045773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -35,34 +35,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Translate_Drawable.VocabCardViewController.didTapLoad(Any) -&gt; ()"
                   moduleName = "Translate:Drawable"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jacquescastonguay/Desktop/Projects/Translate:Drawable/Translate:Drawable/Controller/VocabCardViewController.swift"
-                  timestampString = "544532296.994156"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "268">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Translate_Drawable.VocabCardViewController.didTapLoad(Any) -&gt; ()"
-                  moduleName = "Translate:Drawable"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jacquescastonguay/Desktop/Projects/Translate:Drawable/Translate:Drawable/Controller/VocabCardViewController.swift"
-                  timestampString = "544532297.000811"
+                  timestampString = "546219581.787415"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
                   endingLineNumber = "34"
                   offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Translate_Drawable.VocabCardViewController.didTapLoad(Any) -&gt; ()"
+                  moduleName = "Translate:Drawable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacquescastonguay/Desktop/Projects/Translate:Drawable/Translate:Drawable/Controller/VocabCardViewController.swift"
+                  timestampString = "546219581.791716"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "403">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -70,11 +70,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Translate:Drawable/Controller/VocabCardViewController.swift"
-            timestampString = "544046118.896484"
+            timestampString = "546236717.045879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"

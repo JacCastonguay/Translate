@@ -26,7 +26,6 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func registerAccount(sender: UIButton){
-        //GitGud at getting values
         guard let name = nameTextField.text, name != "",
             let emailAdress = emailTextField.text, emailAdress != "",
             let password = passwordTextField.text, password != "" else {
@@ -74,16 +73,5 @@ class SignUpViewController: UIViewController {
             
         })
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
