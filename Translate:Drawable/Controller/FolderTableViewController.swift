@@ -43,17 +43,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getRecentCards() { (newCards) in
-            
-            newCards.forEach({ (card) in
-                print("----------")
-                print("Post ID: \(card.postId)")
-                print("Image URL: \(card.imageHintForEngFileURL)")
-                print("User: \(card.user)")
-                print("English Word: \(card.englishWord)")
-                print("Spanish Word: \(card.spanishWord)")
-                })
-        }
+        getRecentCards()
 
         //Fetch request to get objs we want to see ples sortDescriptor on how we want to sort them (englishWord for now, will want something like "visibleWord" eventually when we can flip starting face up side)
         let fetchRequest: NSFetchRequest<WordMO> = WordMO.fetchRequest()
@@ -74,6 +64,11 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 print(error)
             }
         }
+        //Pull down to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(getRecentCards), for: UIControlEvents.valueChanged)
+        
+
 
     }
 
@@ -167,7 +162,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     }
     
     //Pull posts from Firebase
-    func getRecentCards(start timestamp: Int? = nil, completionHandler: @escaping([Card]) -> Void) {
+    @objc func getRecentCards() {
         var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
         
         let compareTime = TimeTracker.shared.ReadTime()
@@ -210,7 +205,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                                     
                                 }
                                 cardImage = image
-                                //Comment out to fix multidownload bug???
+                                
                                 self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
                             }
                             
@@ -222,15 +217,14 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                         downloadTask.resume()
                     } else {print("url was not properly set")}
                     
-                    //self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
                 }
 
             }
             
-            completionHandler(newCards)
         })
+        self.refreshControl?.endRefreshing()
         
-        //Get rid of this when done debugging
+        //Use this when debugging to download all posts
         //TimeTracker.shared.WriteTime(newTime: String(0))
     }
 
