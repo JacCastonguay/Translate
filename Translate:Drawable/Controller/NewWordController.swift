@@ -192,6 +192,8 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
 
                 print(error.localizedDescription)
             }
+            
+        
         }
         
         

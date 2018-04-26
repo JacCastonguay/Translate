@@ -53,7 +53,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 print("English Word: \(card.englishWord)")
                 print("Spanish Word: \(card.spanishWord)")
                 })
-            
         }
 
         //Fetch request to get objs we want to see ples sortDescriptor on how we want to sort them (englishWord for now, will want something like "visibleWord" eventually when we can flip starting face up side)
@@ -75,7 +74,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 print(error)
             }
         }
-        
+
     }
 
     
@@ -170,14 +169,10 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     //Pull posts from Firebase
     func getRecentCards(start timestamp: Int? = nil, completionHandler: @escaping([Card]) -> Void) {
         var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
-        //Timestamp is compared to zero, need to add a value for latest query check to keep in local db.
         
         let compareTime = TimeTracker.shared.ReadTime()
-        //if let latestPostTimestamp = timestamp, latestPostTimestamp > compareTime {
-            //TimeTracker.shared.WriteTime(newTime: String(latestPostTimestamp))
-            //If the timestamp is specified, we will get the posts with timestamps newer than the given value.
-            cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
-        //}
+        cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
+
         
         // Call Firebase API to retrieve the latest records
         cardQuery.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -196,7 +191,9 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 newCards.sort(by: {$0.timestamp > $1.timestamp})
 
                 for card in newCards {
-                    TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
+                    if card.timestamp > compareTime {
+                        TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
+                    }
                     //Download Image
                     var cardImage: UIImage?
                     if let url = URL(string: card.imageHintForEngFileURL) {
@@ -232,6 +229,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             
             completionHandler(newCards)
         })
+        
         //Get rid of this when done debugging
         //TimeTracker.shared.WriteTime(newTime: String(0))
     }
