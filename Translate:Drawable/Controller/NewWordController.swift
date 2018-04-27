@@ -184,7 +184,6 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         uploadTask4Eng.observe(.failure) { (snapshot) in
             
             if let error = snapshot.error {
-
                 print(error.localizedDescription)
             }
             
