@@ -60,7 +60,7 @@ final class PostService {
                                             Card.PostInfoKey.spanishTextHint: String(describing: textHintForSpanishWord),
                                             Card.PostInfoKey.timesRight: Int(0),
                                             Card.PostInfoKey.timestamp:timestamp
-                ]
+                                            ]
                 
                 postDatabaseRef.setValue(card)
                 
@@ -70,18 +70,14 @@ final class PostService {
         }
         
         uploadTask4Eng.observe(.progress) { (snapshot) in
-            
             let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
             print("Uploading \(postDatabaseRef.key).jpg... \(percentComplete)% complete")
         }
         
         uploadTask4Eng.observe(.failure) { (snapshot) in
-            
             if let error = snapshot.error {
                 print(error.localizedDescription)
             }
-            
-            
         }
         
         //dismiss(animated: true, completion: nil)

@@ -164,7 +164,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         let compareTime = TimeTracker.shared.ReadTime()
         cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
 
-        
         // Call Firebase API to retrieve the latest records
         cardQuery.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -193,22 +192,16 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                                 return
                             }
 
-                            
                             OperationQueue.main.addOperation {
-                                guard let image = UIImage(data: imageData) else {
-                                    print("'imagedata' failed turning into 'image'")
-                                    return
-                                    
-                                }
+                                guard let image = UIImage(data: imageData) else { return }
                                 cardImage = image
-                                
                                 self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
                             }
                             
                             if let err = error {
-                                print("OH NO! THERE WAS AN ERROR")
+                                print("An error occurred:")
                                 print(err.localizedDescription)
-                            } else {print ("'error' is empty")}
+                            }
                         })
                         downloadTask.resume()
                     } else {print("url was not properly set")}

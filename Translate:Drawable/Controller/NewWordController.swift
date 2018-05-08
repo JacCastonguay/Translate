@@ -122,73 +122,9 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
             
             return
         }
+        
         //Firebase upload stuff
-        
-        //Generate a Unique ID for the post and prepare te post DB
-        //this accesses .child("cards")
-        let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
-        
-        //Use the unique key as the image name and prepare the storage reference
-        //This accesses .child("photos")
-        let imageStorageRef = PostService.shared.PHOTO_STORAGE_REF.child("\(postDatabaseRef.key).jpg")
-        
-
-        let scaledImageHintForEnglishWord = imageHintForEnglishWord.image!.scale(newWidth: 640)
-        guard let imageData4Eng = UIImageJPEGRepresentation(scaledImageHintForEnglishWord, 0.9) else {
-            print("HA! you've activated my 'photo couldn't be turned to jpe card'")
-            return
-        }
-
-        
-        //Create the file metadate
-        //right now we can only upload one photo at a time
-        let metadata4Eng = StorageMetadata()
-        metadata4Eng.contentType = "image/jpg"
-        
-        //Prepare the upload task
-        let uploadTask4Eng = imageStorageRef.putData(imageData4Eng, metadata: metadata4Eng)
-        
-        //Observe the upload status
-        uploadTask4Eng.observe(.success) { (snapshot) in
-            guard let displayName = Auth.auth().currentUser?.displayName else {
-                return
-            }
-            
-            //Add a reference to the DB
-            if let imageFileURL = snapshot.metadata?.downloadURL()?.absoluteString {
-                let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
-                
-                let card: [String : Any] = [Card.PostInfoKey.imageHintForEngFileURL: imageFileURL,
-                                            Card.PostInfoKey.user: displayName,
-                                            Card.PostInfoKey.englishWord: String(describing: self.englishWordField.text!),
-                                            Card.PostInfoKey.spanishWord: String(describing: self.spanishWordField.text!),
-                                            Card.PostInfoKey.englishTextHint: String(describing: self.textHintForEnglishWord.text!),
-                                            Card.PostInfoKey.spanishTextHint: String(describing: self.textHintForSpanishWord.text!),
-                                            Card.PostInfoKey.timesRight: Int(0),
-                                            Card.PostInfoKey.timestamp:timestamp
-                ]
-                
-                postDatabaseRef.setValue(card)
-                
-            }
-            
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        uploadTask4Eng.observe(.progress) { (snapshot) in
-            
-            let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
-            print("Uploading \(postDatabaseRef.key).jpg... \(percentComplete)% complete")
-        }
-        
-        uploadTask4Eng.observe(.failure) { (snapshot) in
-            
-            if let error = snapshot.error {
-                print(error.localizedDescription)
-            }
-            
-        
-        }
+        PostService.shared.UploadImage(englishImage: self.imageHintForEnglishWord.image!, englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
         
         dismiss(animated: true, completion: nil)
     }
