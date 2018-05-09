@@ -10,10 +10,13 @@ import UIKit
 import CoreData
 import Firebase
 
-class FolderTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class FolderTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
 
     var fetchResultController: NSFetchedResultsController<WordMO>!
     var timesRightGoal = 3
+    
+    var searchController: UISearchController?
+    var searchResults: [WordMO] = []
     
     var vocabularyArray:[WordMO] = []
 
@@ -32,7 +35,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             
             return
         }
-        
         //Present the welcome view
         if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeView") {
             UIApplication.shared.keyWindow?.rootViewController = viewController
@@ -44,7 +46,11 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     override func viewDidLoad() {
         super.viewDidLoad()
         getRecentCards()
-
+        searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchController
+        searchController!.searchResultsUpdater = self
+        searchController!.dimsBackgroundDuringPresentation = false
+        
         //Fetch request to get objs we want to see ples sortDescriptor on how we want to sort them (englishWord for now, will want something like "visibleWord" eventually when we can flip starting face up side)
         let fetchRequest: NSFetchRequest<WordMO> = WordMO.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "englishWord", ascending: true)
@@ -83,8 +89,11 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if searchController!.isActive {
+            return searchResults.count
+        } else {
         return vocabularyArray.count
+        }
     }
 
     
@@ -92,9 +101,14 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FolderTableViewCell
 
+        //determine if we use search or normal
+        let vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
+        
         // Configure the cell...
-        cell.folderName.text = vocabularyArray[indexPath.row].englishWord
-        cell.timesRight.text = String(vocabularyArray[indexPath.row].timesRight) + "/" + String(timesRightGoal)
+//        cell.folderName.text = vocabularyArray[indexPath.row].englishWord
+//        cell.timesRight.text = String(vocabularyArray[indexPath.row].timesRight) + "/" + String(timesRightGoal)
+        cell.folderName.text = vocabWord.englishWord
+        cell.timesRight.text = String(vocabWord.timesRight) + "/" + String(timesRightGoal)
 
         return cell
     }
@@ -217,6 +231,24 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         //TimeTracker.shared.WriteTime(newTime: String(0))
     }
 
+    func filterContent(for searchText: String){
+        searchResults = vocabularyArray.filter({ (vocabularyArrayItem) -> Bool in
+            //change to chapter once created to search for vocab from chapters
+            if let englishWord = vocabularyArrayItem.englishWord {
+                let isMatch = englishWord.localizedCaseInsensitiveContains(searchText)
+                return isMatch
+            }
+            
+            return false
+        })
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+            tableView.reloadData()
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -262,7 +294,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! VocabCardViewController
                 
-                destinationController.vocabWord = vocabularyArray[indexPath.row]
+                destinationController.vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
             }
         }
         // Get the new view controller using segue.destinationViewController.
