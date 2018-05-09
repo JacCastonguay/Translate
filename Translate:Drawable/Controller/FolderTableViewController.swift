@@ -195,6 +195,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 newCards.sort(by: {$0.timestamp > $1.timestamp})
 
                 for card in newCards {
+                    //This might play into problem???
                     if card.timestamp > compareTime {
                         TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
                     }
@@ -255,9 +256,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -267,25 +266,16 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
-    /*
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {    }
 
-    }
-    */
-
-    /*
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return true
-    }
+        return true}
     */
 
-    
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
