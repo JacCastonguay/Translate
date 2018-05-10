@@ -84,7 +84,65 @@ final class PostService {
     }
     
     
-    
+    //Pull posts from Firebase
+    func getRecentCards() {
+        var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
+        
+        let compareTime = TimeTracker.shared.ReadTime()
+        cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
+        
+        // Call Firebase API to retrieve the latest records
+        cardQuery.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            var newCards: [Card] = []
+            for item in snapshot.children.allObjects as! [DataSnapshot] {
+                let cardInfo = item.value as? [String: Any] ?? [:]
+                
+                if let card = Card(postId: item.key, postInfo: cardInfo) {
+                    newCards.append(card)
+                }
+            }
+            
+            if newCards.count > 0 {
+                //Order in descending order (i.e. the latest card becomes the first card)
+                newCards.sort(by: {$0.timestamp > $1.timestamp})
+                
+                for card in newCards {
+                    //This might play into problem???
+                    if card.timestamp > compareTime {
+                        TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
+                    }
+                    //Download Image
+                    var cardImage: UIImage?
+                    if let url = URL(string: card.imageHintForEngFileURL) {
+                        let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                            guard let imageData = data else {
+                                return
+                            }
+                            
+                            OperationQueue.main.addOperation {
+                                guard let image = UIImage(data: imageData) else { return }
+                                cardImage = image
+                                Card.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
+                            }
+                            
+                            if let err = error {
+                                print("An error occurred:")
+                                print(err.localizedDescription)
+                            }
+                        })
+                        downloadTask.resume()
+                    } else {print("url was not properly set")}
+                    
+                }
+                
+            }
+            
+        })
+        
+        //Use this when debugging to download all posts
+        //TimeTracker.shared.WriteTime(newTime: String(0))
+    }
     
     
 }
