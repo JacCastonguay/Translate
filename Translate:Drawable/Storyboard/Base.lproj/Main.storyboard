@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dpf-0S-5IP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dpf-0S-5IP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -264,50 +264,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="4dR-aU-hSg">
-                                        <rect key="frame" x="0.0" y="596" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4dR-aU-hSg" id="C9O-yI-Ttp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="OuJ-09-7Qa">
-                                                    <rect key="frame" x="2" y="5" width="371" height="37.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint Image for Spanish Word (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvD-nw-0qU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="371" height="37.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="OuJ-09-7Qa" secondAttribute="trailing" constant="2" id="CZH-g9-071"/>
-                                                <constraint firstItem="OuJ-09-7Qa" firstAttribute="top" secondItem="C9O-yI-Ttp" secondAttribute="top" constant="5" id="QUe-fx-tgV"/>
-                                                <constraint firstAttribute="bottom" secondItem="OuJ-09-7Qa" secondAttribute="bottom" constant="1" id="Z6b-yg-HNa"/>
-                                                <constraint firstItem="OuJ-09-7Qa" firstAttribute="leading" secondItem="C9O-yI-Ttp" secondAttribute="leading" constant="2" id="jF4-VF-MEE"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="ldd-w9-J1J">
-                                        <rect key="frame" x="0.0" y="640" width="375" height="200"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ldd-w9-J1J" id="gop-Zz-6Ci">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="myy-6I-tEO">
-                                                    <rect key="frame" x="175" y="90" width="24" height="18"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="myy-6I-tEO" firstAttribute="centerY" secondItem="gop-Zz-6Ci" secondAttribute="centerY" id="f4p-88-NMa"/>
-                                                <constraint firstItem="myy-6I-tEO" firstAttribute="centerX" secondItem="gop-Zz-6Ci" secondAttribute="centerX" id="kTm-qh-4X7"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -332,7 +288,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="englishWordField" destination="DMN-vr-gSD" id="HyV-Ey-WtA"/>
-                        <outlet property="imageHintForEnglishWord" destination="myy-6I-tEO" id="QUq-hy-4Rq"/>
                         <outlet property="imageHintForSpanishWord" destination="oz2-Tl-8ek" id="2kE-Cp-pDE"/>
                         <outlet property="spanishWordField" destination="iz3-HT-BBZ" id="8P9-xV-2RD"/>
                         <outlet property="textHintForEnglishWord" destination="Gw6-dj-lZV" id="jCD-Sp-5Co"/>

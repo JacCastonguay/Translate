@@ -44,8 +44,6 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         }
     }
     
-    @IBOutlet var imageHintForEnglishWord: UIImageView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +64,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 3 || indexPath.row == 7 {
+        if indexPath.row == 3 {//|| indexPath.row == 7 {
             
             photoRow = indexPath.row
             //Instantiate pop up Alert (Giving it a message)
@@ -124,13 +122,13 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         }
         
         //Firebase upload stuff
-        PostService.shared.UploadImage(englishImage: self.imageHintForEnglishWord.image!, englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
+        PostService.shared.UploadImage(englishImage: self.imageHintForSpanishWord.image!, englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
         
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        let viewForThisImage = photoRow == 3 ? imageHintForSpanishWord! : imageHintForEnglishWord!
+        let viewForThisImage = imageHintForSpanishWord!
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             //temperary hard code for spanish Hint image until I can differentiate
             viewForThisImage.image = selectedImage
@@ -161,7 +159,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 8
+        return 6
     }
 
 }
