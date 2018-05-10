@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 struct Card {
     var postId: String
     var imageHintForEngFileURL: String
@@ -55,5 +57,26 @@ struct Card {
         }
         
         self = Card(postId: postId, imageHintForEngFileURL: imageHintForEngFileURL, user: user, englishWord: englishWord, spanishWord: spanishWord, englishTextHint: englishTextHint, spanishTextHint: spanishTextHint, timesRight: timesRight, timestamp: timestamp)
+    }
+    
+    static func addLocaclly(englishWord:String, englishTextHint:String, spanishWord:String, spanishTextHint:String, englishImageHint:UIImage? = nil) -> Void {
+        var word: WordMO!
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            word = WordMO(context: appDelegate.persistentContainer.viewContext)
+            word.englishWord = englishWord
+            word.englishTextHint = englishTextHint
+            word.spanishWord = spanishWord
+            word.spanishTextHint = spanishTextHint
+            word.timesRight = 0
+            
+            if let img = englishImageHint {
+                print("AN ATTEMP WAS MADE TO CONVERT img")
+                word.englishImageHint = UIImageJPEGRepresentation(img, 0.9)
+            } else {
+                print("imageCard was empty when trying to convert to JPEG")
+            }
+            
+            appDelegate.saveContext()
+        }
     }
 }

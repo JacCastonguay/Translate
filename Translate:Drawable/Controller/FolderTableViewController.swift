@@ -210,7 +210,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                             OperationQueue.main.addOperation {
                                 guard let image = UIImage(data: imageData) else { return }
                                 cardImage = image
-                                self.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
+                                Card.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
                             }
                             
                             if let err = error {
@@ -288,28 +288,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             }
         }
         // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     
-    func addLocaclly(englishWord:String, englishTextHint:String, spanishWord:String, spanishTextHint:String, englishImageHint:UIImage? = nil) -> Void {
-        var word: WordMO!
-        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-            word = WordMO(context: appDelegate.persistentContainer.viewContext)
-            word.englishWord = englishWord
-            word.englishTextHint = englishTextHint
-            word.spanishWord = spanishWord
-            word.spanishTextHint = spanishTextHint
-            word.timesRight = 0
-            
-            if let img = englishImageHint {
-                print("AN ATTEMP WAS MADE TO CONVERT img")
-                word.englishImageHint = UIImageJPEGRepresentation(img, 0.9)
-            } else {
-                print("imageCard was empty when trying to convert to JPEG")
-            }
-            
-            appDelegate.saveContext()
-        }
-    }
 
 }
