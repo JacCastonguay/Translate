@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class VocabCardViewController: UIViewController {
 
+    @IBOutlet weak var adBanner: GADBannerView!
+    
+//    lazy var adBannerView: GADBannerView = {
+//        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+//        adBannerView.adUnitID = "ca-app-pub-1650577861408675/7964305103"
+//        adBannerView.delegate = self
+//        adBannerView.rootViewController = self
+//        return adBannerView
+//    }()
+    
     @IBOutlet var wordView:VocabCardView!
     
     var vocabWord: WordMO! // = WordMO(englishWord:"", spanishWord:"", englishTextHint: "", englishImageHint: nil, spanishTextHint: "", spanishImageHint: nil)
@@ -19,6 +30,13 @@ class VocabCardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Ad
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "3285462873ff73f1ce0b9c8e6c3a580a704ec628"]
+        adBanner.adUnitID = "ca-app-pub-1650577861408675/7964305103"
+        adBanner.rootViewController = self
+        adBanner.load(request)
+        
         //set visible word & otherWord
         visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
         OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
@@ -115,5 +133,21 @@ class VocabCardViewController: UIViewController {
         }
         
         
+    }
+}
+
+extension VocabCardViewController: GADBannerViewDelegate {
+
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("banner loaded successfully")
+        //create a view in storyboard then set it here instead of tableview
+        //maybe just delete this and look at YT tut
+        //tableView.tableHeaderView?.frame = bannerView.frame
+        //tableView.tableHeaderView = bannerView
+        }
+
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("Failed to receive ads")
+        print(error)
     }
 }
