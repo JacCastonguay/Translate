@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import Firebase
 
 class WelcomeViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let auth = Auth.auth()
+        auth.addStateDidChangeListener { [weak self] (_, user) in
+            if let user = user {
+                print("logged in " + user.displayName!)
+                if let viewController = self!.storyboard?.instantiateViewController(withIdentifier: "MainView") {
+                    UIApplication.shared.keyWindow?.rootViewController = viewController
+                    self!.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                print("not logged in")
+            }
+            
+        }
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
