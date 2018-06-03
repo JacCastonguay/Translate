@@ -307,14 +307,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTL-lk-AgF" customClass="GADBannerView">
-                                <rect key="frame" x="27" y="617" width="320" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="cpj-NV-yuR"/>
-                                    <constraint firstAttribute="height" constant="50" id="hKF-Y2-MvE"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KiF-6q-E2c">
                                 <rect key="frame" x="7.5" y="225.5" width="360" height="216"/>
                                 <constraints>
@@ -381,20 +373,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gTL-lk-AgF" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="05d-Lm-kJ9"/>
                             <constraint firstItem="aup-eG-MXe" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="BQ9-gd-9Gt"/>
-                            <constraint firstItem="h9i-Rh-eIt" firstAttribute="bottom" secondItem="gTL-lk-AgF" secondAttribute="bottom" id="FUt-gQ-Bv7"/>
                             <constraint firstItem="KiF-6q-E2c" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="ISS-Cd-aEo"/>
                             <constraint firstItem="2kM-6i-zW5" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="Jib-DK-Sfh"/>
                             <constraint firstItem="xfg-rH-Shh" firstAttribute="leading" secondItem="h9i-Rh-eIt" secondAttribute="leading" id="QWN-MX-xgG"/>
                             <constraint firstItem="aup-eG-MXe" firstAttribute="top" secondItem="2kM-6i-zW5" secondAttribute="bottom" id="ZZn-iK-xb2"/>
                             <constraint firstItem="xfg-rH-Shh" firstAttribute="top" secondItem="KiF-6q-E2c" secondAttribute="bottom" id="Zsb-i7-SpU"/>
-                            <constraint firstItem="gTL-lk-AgF" firstAttribute="bottom" secondItem="h9i-Rh-eIt" secondAttribute="bottom" id="b7b-I8-q5X"/>
                             <constraint firstItem="KiF-6q-E2c" firstAttribute="centerY" secondItem="TrQ-ry-uyx" secondAttribute="centerY" id="faO-U8-RKj"/>
                             <constraint firstItem="2kM-6i-zW5" firstAttribute="top" secondItem="xfg-rH-Shh" secondAttribute="bottom" id="ku6-PD-GdF"/>
                             <constraint firstItem="h9i-Rh-eIt" firstAttribute="trailing" secondItem="xfg-rH-Shh" secondAttribute="trailing" id="oDs-vF-FXO"/>
                             <constraint firstItem="xfg-rH-Shh" firstAttribute="trailing" secondItem="h9i-Rh-eIt" secondAttribute="trailing" id="on0-Zt-nmg"/>
-                            <constraint firstItem="gTL-lk-AgF" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="rc5-gO-yMI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h9i-Rh-eIt"/>
                         <connections>
@@ -407,7 +395,6 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="adBanner" destination="gTL-lk-AgF" id="SAN-2l-nd7"/>
                         <outlet property="wordView" destination="TrQ-ry-uyx" id="4za-Ou-CxU"/>
                     </connections>
                 </viewController>

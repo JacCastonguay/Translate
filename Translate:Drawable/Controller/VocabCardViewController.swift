@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class VocabCardViewController: UIViewController {
 
-    @IBOutlet weak var adBanner: GADBannerView!
+    //@IBOutlet weak var adBanner: GADBannerView!
     
 //    lazy var adBannerView: GADBannerView = {
 //        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
@@ -30,12 +30,12 @@ class VocabCardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Ad
-        let request = GADRequest()
-        request.testDevices = [kGADSimulatorID, "3285462873ff73f1ce0b9c8e6c3a580a704ec628"]
-        adBanner.adUnitID = "ca-app-pub-1650577861408675/7964305103"
-        adBanner.rootViewController = self
-        adBanner.load(request)
+        //Ads, not working right now
+        //let request = GADRequest()
+        //request.testDevices = [kGADSimulatorID, "3285462873ff73f1ce0b9c8e6c3a580a704ec628"]
+        //adBanner.adUnitID = "ca-app-pub-1650577861408675/7964305103"
+        //adBanner.rootViewController = self
+        //adBanner.load(request)
         
         //set visible word & otherWord
         visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
@@ -77,23 +77,6 @@ class VocabCardViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        if (segue.identifier == "PopUp") {
-//            //set destination
-//            let destinationController = segue.destination as! HintImagePopUpController
-//            //
-//            if (wordView.wordButton.currentTitle == vocabWord.englishWord) {
-//                if let imageName = vocabWord.englishHint.imageName{
-//                    destinationController.hintText = imageName
-//                }
-//            } else {
-//                if let imageName = vocabWord.spanishHint.imageName{
-//                    destinationController.hintText = imageName
-//                }
-//
-//            }
-//        }
 //
 //    }
     
@@ -136,18 +119,18 @@ class VocabCardViewController: UIViewController {
     }
 }
 
-extension VocabCardViewController: GADBannerViewDelegate {
-
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("banner loaded successfully")
-        //create a view in storyboard then set it here instead of tableview
-        //maybe just delete this and look at YT tut
-        //tableView.tableHeaderView?.frame = bannerView.frame
-        //tableView.tableHeaderView = bannerView
-        }
-
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("Failed to receive ads")
-        print(error)
-    }
-}
+//extension VocabCardViewController: GADBannerViewDelegate {
+//
+//    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+//        print("banner loaded successfully")
+//        //create a view in storyboard then set it here instead of tableview
+//        //maybe just delete this and look at YT tut
+//        //tableView.tableHeaderView?.frame = bannerView.frame
+//        //tableView.tableHeaderView = bannerView
+//        }
+//
+//    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+//        print("Failed to receive ads")
+//        print(error)
+//    }
+//}

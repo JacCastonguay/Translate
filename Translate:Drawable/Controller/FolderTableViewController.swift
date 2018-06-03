@@ -9,16 +9,16 @@
 import UIKit
 import CoreData
 import Firebase
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class FolderTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
-    lazy var adBannerView: GADBannerView = {
-        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        adBannerView.adUnitID = "ca-app-pub-1650577861408675/7964305103"
-        adBannerView.delegate = self
-        adBannerView.rootViewController = self
-        return adBannerView
-    }()
+//    lazy var adBannerView: GADBannerView = {
+//        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+//        adBannerView.adUnitID = "ca-app-pub-1650577861408675/7964305103"
+//        adBannerView.delegate = self
+//        adBannerView.rootViewController = self
+//        return adBannerView
+//    }()
     
     var fetchResultController: NSFetchedResultsController<WordMO>!
     var timesRightGoal = 3
@@ -54,9 +54,9 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     override func viewDidLoad() {
         super.viewDidLoad()
         //Ads
-        let request = GADRequest()
-        request.testDevices = [kGADSimulatorID, "3285462873ff73f1ce0b9c8e6c3a580a704ec628"]
-        adBannerView.load(request)
+        //let request = GADRequest()
+        //request.testDevices = [kGADSimulatorID, "3285462873ff73f1ce0b9c8e6c3a580a704ec628"]
+        //adBannerView.load(request)
         
         
         //Firebase commented out to focus on local changes
@@ -249,22 +249,21 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 destinationController.vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
             }
         }
-        // Get the new view controller using segue.destinationViewController.
     }
     
 
 }
 
-extension FolderTableViewController: GADBannerViewDelegate {
-    
+/*extension FolderTableViewController: GADBannerViewDelegate {
+
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("banner loaded successfully")
         tableView.tableHeaderView?.frame = bannerView.frame
         tableView.tableHeaderView = bannerView
     }
-    
+
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         print("Failed to receive ads")
         print(error)
     }
-}
+}*/
