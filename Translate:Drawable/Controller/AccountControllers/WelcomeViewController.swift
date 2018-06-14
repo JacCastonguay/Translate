@@ -18,10 +18,6 @@ class WelcomeViewController: UIViewController {
         auth.addStateDidChangeListener { [weak self] (_, user) in
             if let user = user {
                 print("logged in " + user.displayName!)                
-//                if let viewController = UIViewController.storyboard.instantiateViewController(withIdentifier: "MainView") {
-//                    UIApplication.shared.keyWindow?.rootViewController = viewController
-//                    self!.dismiss(animated: true, completion: nil)
-//                }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "MainView")
                 self?.present(controller, animated: true, completion: nil)

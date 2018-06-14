@@ -87,7 +87,9 @@ final class PostService {
     //Pull posts from Firebase
     func getRecentCards() {
         var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
-        
+        //TODO: replace with plist verision
+        //init plist - might want to init elsewhere instead of re-initing every call. maybe at the welcome controller before Auth.
+        //fetch last download time from plist
         let compareTime = TimeTracker.shared.ReadTime()
         cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
         
@@ -110,6 +112,7 @@ final class PostService {
                 for card in newCards {
                     //This might play into problem???
                     if card.timestamp > compareTime {
+                        //TODO: switch to plist version.
                         TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
                     }
                     //Download Image
