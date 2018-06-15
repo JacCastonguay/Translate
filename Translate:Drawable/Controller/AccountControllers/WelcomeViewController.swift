@@ -24,6 +24,8 @@ class WelcomeViewController: UIViewController {
             }
             return
         }
+        //Reset timestamp to zero for testing
+        //SwiftyPlistManager.shared.save(0, forKey: "lastUpdate", toPlistWithName: "TranslateDataProperties") { (err) in if err == nil { print("reset 'lastUpdate' to 0 for testing.") } }
         let auth = Auth.auth()
         auth.addStateDidChangeListener { [weak self] (_, user) in
             if let user = user {
