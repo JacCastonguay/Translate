@@ -1,5 +1,7 @@
 import Foundation
 import Firebase
+import SwiftyPlistManager
+
 
 final class PostService {
     //Properties
@@ -88,9 +90,10 @@ final class PostService {
     func getRecentCards() {
         var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
         //TODO: replace with plist verision
-        //init plist - might want to init elsewhere instead of re-initing every call. maybe at the welcome controller before Auth.
-        //fetch last download time from plist
-        let compareTime = TimeTracker.shared.ReadTime()
+        //initted in welcomeViewController
+        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: "lastUpdate", fromPlistWithName: "TranslateDataProperties") else {return}
+        //let compareTime = TimeTracker.shared.ReadTime()
+        let compareTime = lastUpdate as! Int
         cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
         
         // Call Firebase API to retrieve the latest records

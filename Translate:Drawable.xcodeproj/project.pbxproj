@@ -32,6 +32,7 @@
 		1CAB6CA22070382000CEE226 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA12070382000CEE226 /* SignUpViewController.swift */; };
 		1CAB6CA420745CFB00CEE226 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA320745CFB00CEE226 /* LoginViewController.swift */; };
 		1CAB6CA620745F8400CEE226 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA520745F8400CEE226 /* ResetPasswordController.swift */; };
+		1CE604D320D22A21004BF01A /* TranslateDataProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CE604D220D22A21004BF01A /* TranslateDataProperties.plist */; };
 		1CF914D92086B31200CC26DA /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF914D82086B31200CC26DA /* UIImage+Scale.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		1CAB6CA12070382000CEE226 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1CAB6CA320745CFB00CEE226 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1CAB6CA520745F8400CEE226 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
+		1CE604D220D22A21004BF01A /* TranslateDataProperties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TranslateDataProperties.plist; sourceTree = "<group>"; };
 		1CF914D82086B31200CC26DA /* UIImage+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
 		A468E9A4A890B59C61052A80 /* Pods-Translate:Drawable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Translate:Drawable.release.xcconfig"; path = "Pods/Target Support Files/Pods-Translate:Drawable/Pods-Translate:Drawable.release.xcconfig"; sourceTree = "<group>"; };
 		C49F20E2AD98970FCEAB9C5A /* Pods_Translate_Drawable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Translate_Drawable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 				1C6F627C203E7EDE00413FA7 /* AppDelegate.swift */,
 				1C6F6283203E7EDE00413FA7 /* Assets.xcassets */,
 				1C6F6288203E7EDE00413FA7 /* Info.plist */,
+				1CE604D220D22A21004BF01A /* TranslateDataProperties.plist */,
 			);
 			path = "Translate:Drawable";
 			sourceTree = "<group>";
@@ -216,7 +219,6 @@
 				1C6F6276203E7EDE00413FA7 /* Frameworks */,
 				1C6F6277203E7EDE00413FA7 /* Resources */,
 				7400110830B83C227873471C /* [CP] Embed Pods Frameworks */,
-				A797325C5FD6628D444F8F25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,6 +274,7 @@
 				1C6F6284203E7EDE00413FA7 /* Assets.xcassets in Resources */,
 				1C6F6282203E7EDE00413FA7 /* Main.storyboard in Resources */,
 				1CAB6C9D207022BD00CEE226 /* GoogleService-Info.plist in Resources */,
+				1CE604D320D22A21004BF01A /* TranslateDataProperties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +290,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Translate:Drawable/Pods-Translate:Drawable-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -294,6 +298,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -318,21 +323,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A797325C5FD6628D444F8F25 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Translate:Drawable/Pods-Translate:Drawable-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

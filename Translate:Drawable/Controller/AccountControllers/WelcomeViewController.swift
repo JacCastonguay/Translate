@@ -8,12 +8,22 @@
 
 import UIKit
 import Firebase
+import SwiftyPlistManager
 
 class WelcomeViewController: UIViewController {
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SwiftyPlistManager.shared.start(plistNames: ["TranslateDataProperties"], logging: true)
+        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: "lastUpdate", fromPlistWithName: "TranslateDataProperties") as? Int else {
+            SwiftyPlistManager.shared.save(0, forKey: "lastUpdate", toPlistWithName: "TranslateDataProperties") { (err) in
+                if err == nil {
+                    print("saved last update as 0")
+                }
+            }
+            return
+        }
         let auth = Auth.auth()
         auth.addStateDidChangeListener { [weak self] (_, user) in
             if let user = user {
