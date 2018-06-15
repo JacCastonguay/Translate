@@ -101,6 +101,33 @@ final class PostService {
         })
     }
     
+    fileprivate func DownloadIfNewer(_ card: Card, compareTime:Int) {
+        if card.timestamp > compareTime {
+            self.updatePlist(card)
+            //Download Image
+            var cardImage: UIImage?
+            if let url = URL(string: card.imageHintForEngFileURL) {
+                let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                    guard let imageData = data else {
+                        return
+                    }
+                    
+                    OperationQueue.main.addOperation {
+                        guard let image = UIImage(data: imageData) else { return }
+                        cardImage = image
+                        Card.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
+                    }
+                    
+                    if let err = error {
+                        print("An error occurred:")
+                        print(err.localizedDescription)
+                    }
+                })
+                downloadTask.resume()
+            } else {print("url was not properly set")}
+        } else {print("card was not newer")}
+    }
+    
     func getRecentCards() {
         var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
         //initted in welcomeViewController
@@ -124,30 +151,7 @@ final class PostService {
                 newCards.sort(by: {$0.timestamp < $1.timestamp})
                 
                 for card in newCards {
-                    if card.timestamp > compareTime {
-                        self.updatePlist(card)
-                        //Download Image
-                        var cardImage: UIImage?
-                        if let url = URL(string: card.imageHintForEngFileURL) {
-                            let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                                guard let imageData = data else {
-                                    return
-                                }
-                                
-                                OperationQueue.main.addOperation {
-                                    guard let image = UIImage(data: imageData) else { return }
-                                    cardImage = image
-                                    Card.addLocaclly(englishWord: card.englishWord, englishTextHint: card.englishTextHint, spanishWord: card.spanishWord, spanishTextHint: card.spanishTextHint, englishImageHint: cardImage)
-                                }
-                                
-                                if let err = error {
-                                    print("An error occurred:")
-                                    print(err.localizedDescription)
-                                }
-                            })
-                            downloadTask.resume()
-                        } else {print("url was not properly set")}
-                    } else {print("card was not newer")}
+                    self.DownloadIfNewer(card, compareTime: compareTime)
                 }
             }
         })
