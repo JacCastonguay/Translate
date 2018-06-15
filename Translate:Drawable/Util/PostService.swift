@@ -9,6 +9,9 @@ final class PostService {
     
     private init() { }
     
+    let lastUpdateName = "lastUpdate"
+    let translateDataPropertiesName = "TranslateDataProperties"
+    
     //Firebase Database References
     
     let BASE_DB_REF: DatabaseReference = Database.database().reference()
@@ -87,12 +90,21 @@ final class PostService {
     
     
     //Pull posts from Firebase
+    fileprivate func updatePlist(_ card: Card) {
+        SwiftyPlistManager.shared.save(card.timestamp, forKey: lastUpdateName, toPlistWithName: "TranslateDataProperties", completion: { (err) in
+            if err == nil {
+                print("successfully updated 'lastUpdate'")
+            } else {
+                print("there was an error updating 'lastUpdate':")
+                print(err!)
+            }
+        })
+    }
+    
     func getRecentCards() {
         var cardQuery = PostService.shared.POST_DB_REF.queryOrdered(byChild: Card.PostInfoKey.timestamp)
-        //TODO: replace with plist verision
         //initted in welcomeViewController
-        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: "lastUpdate", fromPlistWithName: "TranslateDataProperties") else {return}
-        //let compareTime = TimeTracker.shared.ReadTime()
+        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: "lastUpdate", fromPlistWithName: translateDataPropertiesName) else {return}
         let compareTime = lastUpdate as! Int
         cardQuery = cardQuery.queryStarting(atValue: compareTime + 1, childKey: Card.PostInfoKey.timestamp)
         
@@ -102,7 +114,6 @@ final class PostService {
             var newCards: [Card] = []
             for item in snapshot.children.allObjects as! [DataSnapshot] {
                 let cardInfo = item.value as? [String: Any] ?? [:]
-                
                 if let card = Card(postId: item.key, postInfo: cardInfo) {
                     newCards.append(card)
                 }
@@ -113,19 +124,8 @@ final class PostService {
                 newCards.sort(by: {$0.timestamp < $1.timestamp})
                 
                 for card in newCards {
-                    //This might play into problem???
                     if card.timestamp > compareTime {
-                        //TODO: switch to plist version.
-                        SwiftyPlistManager.shared.save(card.timestamp, forKey: "lastUpdate", toPlistWithName: "TranslateDataProperties", completion: { (err) in
-                            if err == nil {
-                                print("successfully updated 'lastUpdate'")
-                            } else {
-                                print("there was an error updating 'lastUpdate':")
-                                print(err!)
-                            }
-                        })
-                        //TimeTracker.shared.WriteTime(newTime: String(card.timestamp))
-                    
+                        self.updatePlist(card)
                         //Download Image
                         var cardImage: UIImage?
                         if let url = URL(string: card.imageHintForEngFileURL) {
@@ -147,17 +147,10 @@ final class PostService {
                             })
                             downloadTask.resume()
                         } else {print("url was not properly set")}
-                    //End below
                     } else {print("card was not newer")}
-                    
                 }
-                
             }
-            
         })
-        
-        //Use this when debugging to download all posts
-        //TimeTracker.shared.WriteTime(newTime: String(0))
     }
     
     

@@ -12,12 +12,15 @@ import SwiftyPlistManager
 
 class WelcomeViewController: UIViewController {
 
+    let lastUpdateName = "lastUpdate"
+    let translateDataPropertiesName = "TranslateDataProperties"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SwiftyPlistManager.shared.start(plistNames: ["TranslateDataProperties"], logging: true)
-        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: "lastUpdate", fromPlistWithName: "TranslateDataProperties") as? Int else {
-            SwiftyPlistManager.shared.save(0, forKey: "lastUpdate", toPlistWithName: "TranslateDataProperties") { (err) in
+        SwiftyPlistManager.shared.start(plistNames: [translateDataPropertiesName], logging: true)
+        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: lastUpdateName, fromPlistWithName: translateDataPropertiesName) as? Int else {
+            SwiftyPlistManager.shared.save(0, forKey: lastUpdateName, toPlistWithName: translateDataPropertiesName) { (err) in
                 if err == nil {
                     print("saved last update as 0")
                 }
@@ -25,14 +28,14 @@ class WelcomeViewController: UIViewController {
             return
         }
         //Reset timestamp to zero for testing
-        //SwiftyPlistManager.shared.save(0, forKey: "lastUpdate", toPlistWithName: "TranslateDataProperties") { (err) in if err == nil { print("reset 'lastUpdate' to 0 for testing.") } }
+        //SwiftyPlistManager.shared.save(0, forKey: lastUpdateName, toPlistWithName: translateDataPropertiesName) { (err) in if err == nil { print("reset 'lastUpdate' to 0 for testing.") } }
         let auth = Auth.auth()
         auth.addStateDidChangeListener { [weak self] (_, user) in
             if let user = user {
                 print("logged in " + user.displayName!)                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "MainView")
-                self?.present(controller, animated: true, completion: nil)
+                self?.present(controller, animated: false, completion: nil)
                     
                 
             } else {
