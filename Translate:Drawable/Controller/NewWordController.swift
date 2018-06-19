@@ -13,6 +13,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
 
     var word: WordMO!
     var photoRow:Int!
+    var imageSelected = false
     
     @IBOutlet var englishWordField: RoundedTextField! {
         didSet {
@@ -28,7 +29,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
             textHintForSpanishWord.delegate = self
         }
     }
-    @IBOutlet var imageHintForSpanishWord: UIImageView!
+    @IBOutlet var imageHint: UIImageView!
     
     @IBOutlet var spanishWordField: RoundedTextField! {
         didSet {
@@ -122,13 +123,19 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         }
         
         //Firebase upload stuff
-        PostService.shared.UploadImage(englishImage: self.imageHintForSpanishWord.image!, englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
+        //TODO: see if passing null image leads to any errors.
+        if(imageSelected){
+            PostService.shared.UploadImage(hintImage: self.imageHint.image!, englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
+        } else {
+            PostService.shared.uploadNonImage(englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
+        }
+        
         
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        let viewForThisImage = imageHintForSpanishWord!
+        let viewForThisImage = imageHint!
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             //temperary hard code for spanish Hint image until I can differentiate
             viewForThisImage.image = selectedImage
@@ -147,6 +154,8 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         
         let bottomConstraint = NSLayoutConstraint(item: viewForThisImage, attribute: .bottom, relatedBy: .equal, toItem: viewForThisImage.superview, attribute: .bottom, multiplier: 1, constant: 0)
         bottomConstraint.isActive = true
+        
+        imageSelected = true
         
         dismiss(animated: true, completion: nil)
         

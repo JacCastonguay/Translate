@@ -2,7 +2,6 @@ import Foundation
 import Firebase
 import SwiftyPlistManager
 
-
 final class PostService {
     //Properties
     static let shared: PostService = PostService()
@@ -20,9 +19,35 @@ final class PostService {
     //Firebase Storage Ref
     let PHOTO_STORAGE_REF: StorageReference = Storage.storage().reference().child("photos")
     
-    func UploadImage(englishImage:UIImage, englishWord:String, spanishWord:String, textHintForEnglishWord:String, textHintForSpanishWord:String ) -> Void {
-        //Firebase upload stuff
+    func testUploadNonImage(){
+        let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
+
+        postDatabaseRef.setValue("Testing non-Image")
+    }
+    
+    func uploadNonImage(englishWord:String, spanishWord:String, textHintForEnglishWord:String, textHintForSpanishWord:String) -> Void {
         
+        let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
+        
+        let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
+        guard let displayName = Auth.auth().currentUser?.displayName else {
+            return
+        }
+        
+        let card: [String : Any] = [
+                                    Card.PostInfoKey.user: displayName,
+                                    Card.PostInfoKey.englishWord: String(describing: englishWord),
+                                    Card.PostInfoKey.spanishWord: String(describing: spanishWord),
+                                    Card.PostInfoKey.englishTextHint: String(describing: textHintForEnglishWord),
+                                    Card.PostInfoKey.spanishTextHint: String(describing: textHintForSpanishWord),
+                                    Card.PostInfoKey.timesRight: Int(0),
+                                    Card.PostInfoKey.timestamp:timestamp
+                                ]
+        
+        postDatabaseRef.setValue(card)
+    }
+    
+    func UploadImage(hintImage:UIImage, englishWord:String, spanishWord:String, textHintForEnglishWord:String, textHintForSpanishWord:String ) -> Void {
         //Generate a Unique ID for the post and prepare te post DB
         //this accesses .child("cards")
         let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
@@ -32,7 +57,7 @@ final class PostService {
         let imageStorageRef = PostService.shared.PHOTO_STORAGE_REF.child("\(postDatabaseRef.key).jpg")
         
         //NOTE: Make this optional eventually
-        let scaledImageHintForEnglishWord = englishImage.scale(newWidth: 640)
+        let scaledImageHintForEnglishWord = hintImage.scale(newWidth: 640)
         guard let imageData4Eng = UIImageJPEGRepresentation(scaledImageHintForEnglishWord, 0.9) else {
             print("HA! you've activated my 'photo couldn't be turned to jpe card'")
             return
