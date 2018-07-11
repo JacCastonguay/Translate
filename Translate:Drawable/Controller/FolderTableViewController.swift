@@ -60,7 +60,8 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         
         
         //Firebase commented out to focus on local changes
-        getRecentCards()
+        //TESTING to see if I can add locally, without firebase
+        //getRecentCards()
         searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
         searchController!.searchResultsUpdater = self
@@ -86,8 +87,8 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             }
         }
         //Pull down to refresh
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(getRecentCards), for: UIControlEvents.valueChanged)
+        //refreshControl = UIRefreshControl()
+        //refreshControl?.addTarget(self, action: #selector(getRecentCards), for: UIControlEvents.valueChanged)
     }
 
     

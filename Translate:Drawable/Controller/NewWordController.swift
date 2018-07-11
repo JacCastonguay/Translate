@@ -126,6 +126,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         //TODO: see if passing null image leads to any errors.
         if(imageSelected){
             PostService.shared.UploadImage(hintImage: self.imageHint.image!, englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
+            Card.addLocaclly(englishWord: self.englishWordField.text!, englishTextHint: self.textHintForEnglishWord.text!, spanishWord: self.spanishWordField.text!, spanishTextHint: self.textHintForSpanishWord.text!, englishImageHint:self.imageHint.image!)
         } else {
             PostService.shared.uploadNonImage(englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
         }

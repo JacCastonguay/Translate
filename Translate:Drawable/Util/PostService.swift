@@ -19,11 +19,6 @@ final class PostService {
     //Firebase Storage Ref
     let PHOTO_STORAGE_REF: StorageReference = Storage.storage().reference().child("photos")
     
-    func testUploadNonImage(){
-        let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
-
-        postDatabaseRef.setValue("Testing non-Image")
-    }
     
     func uploadNonImage(englishWord:String, spanishWord:String, textHintForEnglishWord:String, textHintForSpanishWord:String) -> Void {
         
@@ -149,7 +144,36 @@ final class PostService {
                     }
                 })
                 downloadTask.resume()
-            } else {print("url was not properly set")}
+            } else {
+                //Download without image.
+                var databaseHandle:DatabaseHandle?
+                
+                databaseHandle = POST_DB_REF.observe(.childAdded, with: {(DataSnapshot) in
+                    //Take value from snapshot and add it locally.
+                    let englishWord = DataSnapshot.childSnapshot(forPath: "EnglishWord").value as? String
+                    //find way to deal with empty (might be fine as is):
+                    
+                    let spanishWord = DataSnapshot.childSnapshot(forPath: "SpanishWord").value as? String
+                    let englishTextHint = DataSnapshot.childSnapshot(forPath: "EnglishTextHint").value as? String
+                    let spanishTextHint = DataSnapshot.childSnapshot(forPath: "SpanishTextHint").value as? String
+                    //probably don't need times right. add locally as 0. will change in other locations later
+                    let Timestamp = DataSnapshot.childSnapshot(forPath: "Timestamp").value as? Int
+                    let user = DataSnapshot.childSnapshot(forPath: "user").value as? String
+
+                    //Card.addLocaclly(addAllThingsExceptImageOfCourse):
+                    //Test
+                    //Not being called. getting card not newer print out even WITH photo
+                    print("Function was called to add a card with: ")
+                    print(englishWord)
+                    print(spanishWord)
+                    print(englishTextHint)
+                    print(spanishTextHint)
+                    print(Timestamp)
+                    print(user)
+                    print("-----End card-----")
+                    
+                })
+            }
         } else {print("card was not newer")}
     }
     
