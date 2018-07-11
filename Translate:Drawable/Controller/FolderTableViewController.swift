@@ -186,14 +186,14 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-    
+    //CARDS NO LONGER GOTTEN FROM FIREBASE
     //Pull posts from Firebase
-    @objc func getRecentCards() {
-        PostService.shared.getRecentCards()
-        self.refreshControl?.endRefreshing()
-        //Use this when debugging to download all posts
-        //TimeTracker.shared.WriteTime(newTime: String(0))
-    }
+//    @objc func getRecentCards() {
+//        PostService.shared.getRecentCards()
+//        self.refreshControl?.endRefreshing()
+//        //Use this when debugging to download all posts
+//        //TimeTracker.shared.WriteTime(newTime: String(0))
+//    }
 
     func filterContent(for searchText: String){
         searchResults = vocabularyArray.filter({ (vocabularyArrayItem) -> Bool in

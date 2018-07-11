@@ -129,6 +129,8 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
             Card.addLocaclly(englishWord: self.englishWordField.text!, englishTextHint: self.textHintForEnglishWord.text!, spanishWord: self.spanishWordField.text!, spanishTextHint: self.textHintForSpanishWord.text!, englishImageHint:self.imageHint.image!)
         } else {
             PostService.shared.uploadNonImage(englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
+            Card.addLocaclly(englishWord: self.englishWordField.text!, englishTextHint: self.textHintForEnglishWord.text!, spanishWord: self.spanishWordField.text!, spanishTextHint: self.textHintForSpanishWord.text!)
+
         }
         
         

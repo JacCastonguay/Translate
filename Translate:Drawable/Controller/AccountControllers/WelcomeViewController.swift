@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import SwiftyPlistManager
+//import SwiftyPlistManager
 
 class WelcomeViewController: UIViewController {
 
@@ -18,15 +18,15 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SwiftyPlistManager.shared.start(plistNames: [translateDataPropertiesName], logging: true)
-        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: lastUpdateName, fromPlistWithName: translateDataPropertiesName) as? Int else {
-            SwiftyPlistManager.shared.save(0, forKey: lastUpdateName, toPlistWithName: translateDataPropertiesName) { (err) in
-                if err == nil {
-                    print("saved last update as 0")
-                }
-            }
-            return
-        }
+//        SwiftyPlistManager.shared.start(plistNames: [translateDataPropertiesName], logging: true)
+//        guard let lastUpdate = SwiftyPlistManager.shared.fetchValue(for: lastUpdateName, fromPlistWithName: translateDataPropertiesName) as? Int else {
+//            SwiftyPlistManager.shared.save(0, forKey: lastUpdateName, toPlistWithName: translateDataPropertiesName) { (err) in
+//                if err == nil {
+//                    print("saved last update as 0")
+//                }
+//            }
+//            return
+//        }
         //Reset timestamp to zero for testing
         //SwiftyPlistManager.shared.save(0, forKey: lastUpdateName, toPlistWithName: translateDataPropertiesName) { (err) in if err == nil { print("reset 'lastUpdate' to 0 for testing.") } }
         let auth = Auth.auth()
