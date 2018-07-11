@@ -32,7 +32,6 @@
 		1CAB6CA22070382000CEE226 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA12070382000CEE226 /* SignUpViewController.swift */; };
 		1CAB6CA420745CFB00CEE226 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA320745CFB00CEE226 /* LoginViewController.swift */; };
 		1CAB6CA620745F8400CEE226 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA520745F8400CEE226 /* ResetPasswordController.swift */; };
-		1CE604D320D22A21004BF01A /* TranslateDataProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CE604D220D22A21004BF01A /* TranslateDataProperties.plist */; };
 		1CF914D92086B31200CC26DA /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF914D82086B31200CC26DA /* UIImage+Scale.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		1CAB6CA12070382000CEE226 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1CAB6CA320745CFB00CEE226 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1CAB6CA520745F8400CEE226 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
-		1CE604D220D22A21004BF01A /* TranslateDataProperties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TranslateDataProperties.plist; sourceTree = "<group>"; };
 		1CF914D82086B31200CC26DA /* UIImage+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
 		A468E9A4A890B59C61052A80 /* Pods-Translate:Drawable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Translate:Drawable.release.xcconfig"; path = "Pods/Target Support Files/Pods-Translate:Drawable/Pods-Translate:Drawable.release.xcconfig"; sourceTree = "<group>"; };
 		C49F20E2AD98970FCEAB9C5A /* Pods_Translate_Drawable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Translate_Drawable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +112,6 @@
 				1C6F627C203E7EDE00413FA7 /* AppDelegate.swift */,
 				1C6F6283203E7EDE00413FA7 /* Assets.xcassets */,
 				1C6F6288203E7EDE00413FA7 /* Info.plist */,
-				1CE604D220D22A21004BF01A /* TranslateDataProperties.plist */,
 			);
 			path = "Translate:Drawable";
 			sourceTree = "<group>";
@@ -274,7 +271,6 @@
 				1C6F6284203E7EDE00413FA7 /* Assets.xcassets in Resources */,
 				1C6F6282203E7EDE00413FA7 /* Main.storyboard in Resources */,
 				1CAB6C9D207022BD00CEE226 /* GoogleService-Info.plist in Resources */,
-				1CE604D320D22A21004BF01A /* TranslateDataProperties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
