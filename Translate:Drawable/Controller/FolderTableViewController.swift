@@ -186,14 +186,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-    //CARDS NO LONGER GOTTEN FROM FIREBASE
-    //Pull posts from Firebase
-//    @objc func getRecentCards() {
-//        PostService.shared.getRecentCards()
-//        self.refreshControl?.endRefreshing()
-//        //Use this when debugging to download all posts
-//        //TimeTracker.shared.WriteTime(newTime: String(0))
-//    }
+
 
     func filterContent(for searchText: String){
         searchResults = vocabularyArray.filter({ (vocabularyArrayItem) -> Bool in
@@ -227,6 +220,9 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 let destinationController = segue.destination as! VocabCardViewController
                 
                 destinationController.vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
+                
+                //Pass over entire array of searched words. later we should switch the above to just pass the index we need.
+                destinationController.wordArray = searchResults
             }
         }
     }

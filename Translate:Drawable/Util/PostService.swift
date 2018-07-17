@@ -12,6 +12,7 @@ final class PostService {
     let translateDataPropertiesName = "TranslateDataProperties"
     
     //Firebase Database References
+    let userID = Auth.auth().currentUser!.uid
     
     let BASE_DB_REF: DatabaseReference = Database.database().reference()
     let POST_DB_REF: DatabaseReference = Database.database().reference().child("cards")
@@ -22,7 +23,7 @@ final class PostService {
     
     func uploadNonImage(englishWord:String, spanishWord:String, textHintForEnglishWord:String, textHintForSpanishWord:String) -> Void {
         
-        let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
+        let postDatabaseRef = PostService.shared.POST_DB_REF.child(userID).childByAutoId()
         
         let timestamp = Int(NSDate().timeIntervalSince1970 * 1000)
         guard let displayName = Auth.auth().currentUser?.displayName else {
@@ -45,7 +46,7 @@ final class PostService {
     func UploadImage(hintImage:UIImage, englishWord:String, spanishWord:String, textHintForEnglishWord:String, textHintForSpanishWord:String ) -> Void {
         //Generate a Unique ID for the post and prepare te post DB
         //this accesses .child("cards")
-        let postDatabaseRef = PostService.shared.POST_DB_REF.childByAutoId()
+        let postDatabaseRef = PostService.shared.POST_DB_REF.child(userID).childByAutoId()
         
         //Use the unique key as the image name and prepare the storage reference
         //This accesses .child("photos")

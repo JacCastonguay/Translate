@@ -24,6 +24,7 @@ class VocabCardViewController: UIViewController {
     @IBOutlet var wordView:VocabCardView!
     
     var vocabWord: WordMO! // = WordMO(englishWord:"", spanishWord:"", englishTextHint: "", englishImageHint: nil, spanishTextHint: "", spanishImageHint: nil)
+    var wordArray: [WordMO]!
     var visibleWord:SingleLang = SingleLang(word: "")
     var OtherWord:SingleLang = SingleLang(word: "", textHint: "")
     
