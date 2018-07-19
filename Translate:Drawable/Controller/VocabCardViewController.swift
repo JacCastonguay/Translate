@@ -25,6 +25,7 @@ class VocabCardViewController: UIViewController {
     
     var vocabWord: WordMO! // = WordMO(englishWord:"", spanishWord:"", englishTextHint: "", englishImageHint: nil, spanishTextHint: "", spanishImageHint: nil)
     var wordArray: [WordMO]!
+    var index: Int!
     var visibleWord:SingleLang = SingleLang(word: "")
     var OtherWord:SingleLang = SingleLang(word: "", textHint: "")
     
@@ -46,25 +47,56 @@ class VocabCardViewController: UIViewController {
 
     }
     
-    
+    //Reacts to any button being pressed (besides the top bar's back button)
     @IBAction func didTapLoad(_ sender: Any) {
         let buttonPressed = sender as? UIButton
         switch buttonPressed?.tag {
         case 1?:
+            //Switch card size
             swap(&visibleWord, &OtherWord)
             UpdateViews()
         case 2?:
+            //Use Hint / Make hint visible
             wordView.hintLabel?.alpha = 1
             wordView.hintImage?.alpha = 1
         case 3?:
-            //right
+            //Increase correct count
             if vocabWord.timesRight < 3{
                 if let appDelegate = (UIApplication.shared.delegate as? AppDelegate){
                     vocabWord.timesRight += 1
                     appDelegate.saveContext()
                 }
             }
+        case 4?:
+            //Next button
+            if(index < (wordArray.count - 1)){
+                //Increase everything as normal
+                index = index + 1
+            }else{
+                index = 0
+            }
+            vocabWord = wordArray[index]
+            visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
+            OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
+            UpdateViews()
+            //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
+        case 5?:
+            //Last button
+            if(index > 0){
+                //Increase everything as normal
+                index = index - 1
+            }else{
+                index = wordArray.count - 1
+            }
+            vocabWord = wordArray[index]
+            visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
+            OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
+            UpdateViews()
+            //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
+            
+            
         default:
+            print("Default (nothing) was selected")
             return
         }
     }

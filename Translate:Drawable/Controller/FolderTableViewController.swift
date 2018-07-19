@@ -222,7 +222,8 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
                 destinationController.vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
                 
                 //Pass over entire array of searched words. later we should switch the above to just pass the index we need.
-                destinationController.wordArray = searchResults
+                destinationController.wordArray = (searchController!.isActive) ? searchResults : vocabularyArray
+                destinationController.index = indexPath.row
             }
         }
     }

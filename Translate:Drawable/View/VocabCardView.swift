@@ -15,6 +15,7 @@ class VocabCardView: UIView {
     @IBOutlet var hintImage: UIImageView!
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var wrongButton: UIButton!
+    @IBOutlet var nextButton: UIButton!
     
     override func setNeedsDisplay() {
         super.setNeedsDisplay()
