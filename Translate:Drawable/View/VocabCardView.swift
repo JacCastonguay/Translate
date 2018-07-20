@@ -16,6 +16,8 @@ class VocabCardView: UIView {
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var wrongButton: UIButton!
     @IBOutlet var nextButton: UIButton!
+    @IBOutlet var lastButton: UIButton!
+    @IBOutlet var shuffleButton: UIButton!
     
     override func setNeedsDisplay() {
         super.setNeedsDisplay()

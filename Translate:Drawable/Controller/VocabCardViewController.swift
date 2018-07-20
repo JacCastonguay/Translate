@@ -26,12 +26,23 @@ class VocabCardViewController: UIViewController {
     var vocabWord: WordMO! // = WordMO(englishWord:"", spanishWord:"", englishTextHint: "", englishImageHint: nil, spanishTextHint: "", spanishImageHint: nil)
     var wordArray: [WordMO]!
     var index: Int!
+    var randomIndex: [Int]!
     var visibleWord:SingleLang = SingleLang(word: "")
     var OtherWord:SingleLang = SingleLang(word: "", textHint: "")
+    var isShuffle = false
     
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        randomIndex = []
+        for i in 0...(wordArray.count-1) {
+            randomIndex.append(i)
+        }
+        
+        //randomIndex = randomIndex.shuffled()
+        print(randomIndex)
         //Ads, not working right now
         //let request = GADRequest()
         //request.testDevices = [kGADSimulatorID, "3285462873ff73f1ce0b9c8e6c3a580a704ec628"]
@@ -40,67 +51,77 @@ class VocabCardViewController: UIViewController {
         //adBanner.load(request)
         
         //set visible word & otherWord
+        SetEnglishVisible()
+    }
+    
+    fileprivate func SetEnglishVisible() {
         visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
         OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
         //Set views&button
         UpdateViews()
-
     }
     
     //Reacts to any button being pressed (besides the top bar's back button)
-    @IBAction func didTapLoad(_ sender: Any) {
-        let buttonPressed = sender as? UIButton
-        switch buttonPressed?.tag {
-        case 1?:
-            //Switch card size
-            swap(&visibleWord, &OtherWord)
-            UpdateViews()
-        case 2?:
-            //Use Hint / Make hint visible
-            wordView.hintLabel?.alpha = 1
-            wordView.hintImage?.alpha = 1
-        case 3?:
-            //Increase correct count
-            if vocabWord.timesRight < 3{
-                if let appDelegate = (UIApplication.shared.delegate as? AppDelegate){
-                    vocabWord.timesRight += 1
-                    appDelegate.saveContext()
-                }
+    @IBAction func DidTapSwapButton(_ sender: Any) {
+        //Switch card size
+        swap(&visibleWord, &OtherWord)
+        UpdateViews()
+    }
+    
+    @IBAction func DidTapUseHints(_ sender: Any) {
+        wordView.hintLabel?.alpha = 1
+        wordView.hintImage?.alpha = 1
+    }
+    
+    @IBAction func DidTapTimesRight(_ sender: Any){
+        if vocabWord.timesRight < 3{
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate){
+                vocabWord.timesRight += 1
+                appDelegate.saveContext()
             }
-        case 4?:
-            //Next button
-            if(index < (wordArray.count - 1)){
-                //Increase everything as normal
-                index = index + 1
-            }else{
-                index = 0
-            }
-            vocabWord = wordArray[index]
-            visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
-            OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
-            UpdateViews()
-            //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
-        case 5?:
-            //Last button
-            if(index > 0){
-                //Increase everything as normal
-                index = index - 1
-            }else{
-                index = wordArray.count - 1
-            }
-            vocabWord = wordArray[index]
-            visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
-            OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
-            UpdateViews()
-            //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
-            
-            
-        default:
-            print("Default (nothing) was selected")
-            return
         }
     }
     
+    @IBAction func DidTapNext(_ sender: Any){
+        if(index < (wordArray.count - 1)){
+            //Increase everything as normal
+            index = index + 1
+        }else{
+            index = 0
+        }
+        vocabWord = wordArray[randomIndex[index]]
+        SetEnglishVisible()
+        //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
+    }
+    
+    @IBAction func DidTapLast(_ sender: Any){
+        if(index > 0){
+            //Increase everything as normal
+            index = index - 1
+        }else{
+            index = wordArray.count - 1
+        }
+        vocabWord = wordArray[index]
+        SetEnglishVisible()
+        //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
+    }
+    
+    @IBAction func ToggleShuffle(_ sender: Any){
+        if isShuffle == true {
+            isShuffle = false
+            //default color
+            wordView.shuffleButton.setTitleColor(UIColor(displayP3Red: 0, green: 122/255, blue: 1, alpha: 1.0), for: .normal)
+            print("shuffle is off now")
+            index = randomIndex[index]
+            randomIndex.sort()
+        } else {
+            isShuffle = true
+            wordView.shuffleButton.setTitleColor(.blue, for: .normal)
+            print("shuffle is on now")
+            randomIndex = randomIndex.shuffled()
+
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

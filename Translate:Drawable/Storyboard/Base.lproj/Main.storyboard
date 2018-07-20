@@ -75,7 +75,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaM-uV-dPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016.8" y="-152.47376311844079"/>
+            <point key="canvasLocation" x="2145" y="-172"/>
         </scene>
         <!--New Word Controller-->
         <scene sceneID="IuT-T8-Y05">
@@ -297,7 +297,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jz6-SY-tHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZdF-iH-kBf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2525.5999999999999" y="-823.53823088455783"/>
+            <point key="canvasLocation" x="4273" y="-824"/>
         </scene>
         <!--Vocab Card View Controller-->
         <scene sceneID="tMD-a3-Jr2">
@@ -318,7 +318,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="8xj-DJ-Ejp"/>
+                                    <action selector="DidTapSwapButton:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="8xj-DJ-Ejp"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfg-rH-Shh" userLabel="Button Stack View">
@@ -329,7 +329,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Use Hints"/>
                                         <connections>
-                                            <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="fnu-Gv-CXd"/>
+                                            <action selector="DidTapUseHints:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="rkP-7C-8Wd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -358,7 +358,7 @@
                                             <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchDown" id="N0Z-aR-bWs"/>
+                                            <action selector="DidTapTimesRight:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="vXe-at-If6"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -374,28 +374,44 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKx-Ym-TyS">
-                                <rect key="frame" x="0.0" y="563" width="158" height="104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Last"/>
-                                <connections>
-                                    <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="fro-nb-c0R"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5WK-CK-3jN">
-                                <rect key="frame" x="217" y="563" width="158" height="104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="didTapLoad:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="U5v-Mc-S7R"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K2s-El-LlG">
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKx-Ym-TyS">
+                                        <rect key="frame" x="0.0" y="36" width="125" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Last"/>
+                                        <connections>
+                                            <action selector="DidTapLast:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="jVZ-zc-4dn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-OR-vVB">
+                                        <rect key="frame" x="125" y="39" width="125" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Shuffle"/>
+                                        <connections>
+                                            <action selector="ToggleShuffle:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="0qD-Kr-dm4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5WK-CK-3jN">
+                                        <rect key="frame" x="250" y="36" width="125" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <action selector="DidTapNext:" destination="Bs7-5q-wDp" eventType="touchUpInside" id="m4G-bR-A5X"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="52e-FZ-25j"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="h9i-Rh-eIt" firstAttribute="trailing" secondItem="K2s-El-LlG" secondAttribute="trailing" id="0Tx-Ym-0oQ"/>
                             <constraint firstItem="Zvg-iU-0ZN" firstAttribute="top" secondItem="h9i-Rh-eIt" secondAttribute="top" constant="4" id="28J-PZ-eHe"/>
+                            <constraint firstItem="K2s-El-LlG" firstAttribute="leading" secondItem="h9i-Rh-eIt" secondAttribute="leading" id="AfQ-9Q-2bt"/>
                             <constraint firstItem="aup-eG-MXe" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="BQ9-gd-9Gt"/>
                             <constraint firstItem="KiF-6q-E2c" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="ISS-Cd-aEo"/>
                             <constraint firstItem="2kM-6i-zW5" firstAttribute="centerX" secondItem="TrQ-ry-uyx" secondAttribute="centerX" id="Jib-DK-Sfh"/>
@@ -409,12 +425,16 @@
                             <constraint firstItem="h9i-Rh-eIt" firstAttribute="trailing" secondItem="xfg-rH-Shh" secondAttribute="trailing" id="oDs-vF-FXO"/>
                             <constraint firstItem="xfg-rH-Shh" firstAttribute="trailing" secondItem="h9i-Rh-eIt" secondAttribute="trailing" id="on0-Zt-nmg"/>
                             <constraint firstItem="h9i-Rh-eIt" firstAttribute="trailing" secondItem="Zvg-iU-0ZN" secondAttribute="trailing" constant="4" id="sKl-PC-1HI"/>
+                            <constraint firstItem="h9i-Rh-eIt" firstAttribute="bottom" secondItem="K2s-El-LlG" secondAttribute="bottom" id="wVS-5O-vXM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h9i-Rh-eIt"/>
                         <connections>
                             <outlet property="hintImage" destination="BfP-oM-Wp2" id="iqw-QA-IOC"/>
                             <outlet property="hintLabel" destination="2kM-6i-zW5" id="acw-jn-Oiv"/>
+                            <outlet property="lastButton" destination="tKx-Ym-TyS" id="hoO-Ak-ucb"/>
+                            <outlet property="nextButton" destination="5WK-CK-3jN" id="TuG-an-IuY"/>
                             <outlet property="rightButton" destination="8jM-4D-YNL" id="jTe-Fk-Nry"/>
+                            <outlet property="shuffleButton" destination="xbZ-OR-vVB" id="VFS-hB-9Fp"/>
                             <outlet property="useHintsbutton" destination="SbT-5p-w63" id="yv0-US-W6f"/>
                             <outlet property="wordButton" destination="KiF-6q-E2c" id="hzz-08-e12"/>
                             <outlet property="wrongButton" destination="FwO-Ja-aRf" id="dhE-81-Q5J"/>
@@ -426,7 +446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rR-3f-235" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1832.8" y="-152.47376311844079"/>
+            <point key="canvasLocation" x="3343" y="-152"/>
         </scene>
         <!--Hint Image Pop Up Controller-->
         <scene sceneID="4ml-0M-B3Q">
@@ -467,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wl9-P8-o3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724" y="-152.47376311844079"/>
+            <point key="canvasLocation" x="4273" y="-152"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="RuU-AE-uFs">
@@ -736,7 +756,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngf-dj-U1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1820" y="-824"/>
+            <point key="canvasLocation" x="3382" y="-824"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DKz-O2-qdM">

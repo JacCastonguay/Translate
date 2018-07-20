@@ -218,10 +218,10 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         if segue.identifier == "showVocabCard"{
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! VocabCardViewController
-                
+                //TODO: remove this, covered by lower
                 destinationController.vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
                 
-                //Pass over entire array of searched words. later we should switch the above to just pass the index we need.
+                //Pass over entire array of searched words.
                 destinationController.wordArray = (searchController!.isActive) ? searchResults : vocabularyArray
                 destinationController.index = indexPath.row
             }
