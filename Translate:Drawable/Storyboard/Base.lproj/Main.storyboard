@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MainView-->
+        <!--MainViewOLD-->
         <scene sceneID="gGA-sU-lUb">
             <objects>
-                <tableViewController storyboardIdentifier="FolderViewOLD" title="MainView" id="ohR-Ob-OK5" customClass="FolderTableViewController" customModule="Translate_Drawable" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FolderViewOLD" title="MainViewOLD" id="ohR-Ob-OK5" customClass="FolderTableViewController" customModule="Translate_Drawable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bzu-4T-sFt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -465,10 +465,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zvg-iU-0ZN" userLabel="imageStackView">
-                                <rect key="frame" x="4" y="68" width="367" height="153.5"/>
+                                <rect key="frame" x="4" y="24" width="367" height="197.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BfP-oM-Wp2">
-                                        <rect key="frame" x="0.0" y="0.0" width="367" height="153.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="367" height="197.5"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -901,6 +901,6 @@
         <image name="save" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7PW-gb-fWn"/>
+        <segue reference="G4Q-bJ-zp6"/>
     </inferredMetricsTieBreakers>
 </document>

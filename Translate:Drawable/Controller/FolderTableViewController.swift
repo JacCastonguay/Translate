@@ -106,11 +106,12 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController!.isActive {
-            return searchResults.count
-        } else {
-        return vocabularyArray.count
-        }
+//        if searchController!.isActive {
+//            return searchResults.count
+//        } else {
+//        return vocabularyArray.count
+//        }
+        return 4
     }
 
     
