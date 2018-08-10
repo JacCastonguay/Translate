@@ -1,24 +1,19 @@
 //
-//  FolderTableViewController.swift
+//  FolderController.swift
 //  Translate:Drawable
 //
-//  Created by Jacques Castonguay on 2/21/18.
+//  Created by Jacques Castonguay on 8/5/18.
 //  Copyright © 2018 JaxLab. All rights reserved.
 //
 
 import UIKit
 import CoreData
 import Firebase
-//import GoogleMobileAds
 
-class FolderTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
-//    lazy var adBannerView: GADBannerView = {
-//        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-//        adBannerView.adUnitID = "ca-app-pub-1650577861408675/7964305103"
-//        adBannerView.delegate = self
-//        adBannerView.rootViewController = self
-//        return adBannerView
-//    }()
+class FolderController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,  UISearchResultsUpdating {
+    //Added from suggestion on forum. this got rid of the error but may still persist. If so. probably going to scrap this class and put it all in a custom table view.
+    //Need to test, pretty sure this won't work because it won't have my abount of rows from SearchResults & vocabularyArray. Might want to switch over even before testing this since it won't work. Might be able to put 100% in table view custom class, if any controller class stuff is needed maybe put it here. searchController might be a bitch to figure out.
+     @IBOutlet var tableView: UITableView!
     
     var fetchResultController: NSFetchedResultsController<WordMO>!
     var timesRightGoal = 3
@@ -27,7 +22,8 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     var searchResults: [WordMO] = []
     
     var vocabularyArray:[WordMO] = []
-
+    
+    //Might not be in use. Appears unassigned in other file.
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
     }
@@ -49,7 +45,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,69 +86,64 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         //refreshControl = UIRefreshControl()
         //refreshControl?.addTarget(self, action: #selector(getRecentCards), for: UIControlEvents.valueChanged)
     }
-
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+    //Might not need this. Controller class asks for this but I think we good here. Leaving in a comment just in case.
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
     
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    /*override*/ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController!.isActive {
             return searchResults.count
         } else {
-        return vocabularyArray.count
+            return vocabularyArray.count
         }
     }
-
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FolderTableViewCell
 
         //determine if we use search or normal
         let vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
-        
+
         // Configure the cell...
-//        cell.folderName.text = vocabularyArray[indexPath.row].englishWord
-//        cell.timesRight.text = String(vocabularyArray[indexPath.row].timesRight) + "/" + String(timesRightGoal)
+        //        cell.folderName.text = vocabularyArray[indexPath.row].englishWord
+        //        cell.timesRight.text = String(vocabularyArray[indexPath.row].timesRight) + "/" + String(timesRightGoal)
         cell.folderName.text = vocabWord.englishWord
         cell.timesRight.text = String(vocabWord.timesRight) + "/" + String(timesRightGoal)
 
         return cell
     }
     
-    
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
-            //Delete from DB
-            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-                let context = appDelegate.persistentContainer.viewContext
-                let wordToDelete = self.fetchResultController.object(at: indexPath)
-                context.delete(wordToDelete)
-                appDelegate.saveContext()
-            }
-            completionHandler(true)
-        }
-        
-        deleteAction.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
-        
-        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
-        
-        return swipeConfiguration
-    }
+    //No override for this class. have to find a replacement protocal???
+//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+//            //Delete from DB
+//            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+//                let context = appDelegate.persistentContainer.viewContext
+//                let wordToDelete = self.fetchResultController.object(at: indexPath)
+//                context.delete(wordToDelete)
+//                appDelegate.saveContext()
+//            }
+//            completionHandler(true)
+//        }
+//
+//        deleteAction.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+//
+//        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+//
+//        return swipeConfiguration
+//    }
     
     
     //Next couple funcs let us see our word after we've added it
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
+
     }
     
     
@@ -187,8 +177,7 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-
-
+    
     func filterContent(for searchText: String){
         searchResults = vocabularyArray.filter({ (vocabularyArrayItem) -> Bool in
             //change to chapter once created to search for vocab from chapters
@@ -201,19 +190,19 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
         })
     }
     
+    
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContent(for: searchText)
             tableView.reloadData()
         }
     }
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {    }
-    */
 
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showVocabCard"{
@@ -228,20 +217,6 @@ class FolderTableViewController: UITableViewController, NSFetchedResultsControll
             }
         }
     }
-    
+
 
 }
-
-/*extension FolderTableViewController: GADBannerViewDelegate {
-
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("banner loaded successfully")
-        tableView.tableHeaderView?.frame = bannerView.frame
-        tableView.tableHeaderView = bannerView
-    }
-
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("Failed to receive ads")
-        print(error)
-    }
-}*/

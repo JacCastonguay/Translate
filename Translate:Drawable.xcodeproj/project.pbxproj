@@ -27,6 +27,7 @@
 		1C7C696B2049171200C3A925 /* Sheptember.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C7C696A2049129000C3A925 /* Sheptember.ttf */; };
 		1C7C696D20491AAA00C3A925 /* lovely_eunike_hans.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1C7C696C20491AA100C3A925 /* lovely_eunike_hans.otf */; };
 		1C812513205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C812511205B6F0500D10D4E /* TranslateDrawable.xcdatamodeld */; };
+		1CA9E0E42117E533008B0FB7 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA9E0E32117E533008B0FB7 /* FolderController.swift */; };
 		1CAB6C9D207022BD00CEE226 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB6C9C207022BC00CEE226 /* GoogleService-Info.plist */; };
 		1CAB6CA0207031D400CEE226 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6C9F207031D400CEE226 /* WelcomeViewController.swift */; };
 		1CAB6CA22070382000CEE226 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB6CA12070382000CEE226 /* SignUpViewController.swift */; };
@@ -57,6 +58,7 @@
 		1C7C696A2049129000C3A925 /* Sheptember.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sheptember.ttf; sourceTree = "<group>"; };
 		1C7C696C20491AA100C3A925 /* lovely_eunike_hans.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lovely_eunike_hans.otf; sourceTree = "<group>"; };
 		1C812512205B6F0500D10D4E /* TranslateDrawable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TranslateDrawable.xcdatamodel; sourceTree = "<group>"; };
+		1CA9E0E32117E533008B0FB7 /* FolderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
 		1CAB6C9C207022BC00CEE226 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1CAB6C9F207031D400CEE226 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		1CAB6CA12070382000CEE226 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				1C53264F205DC5750007FECC /* NewWordController.swift */,
 				1C71840220466803002F28BD /* VocabCardViewController.swift */,
 				1C0DB26D2053582200BC4B25 /* HintImagePopUpController.swift */,
+				1CA9E0E32117E533008B0FB7 /* FolderController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				1C53264E205DC37F0007FECC /* RoundedTextField.swift in Sources */,
 				1C728F42208AC3F400BCA031 /* PostService.swift in Sources */,
 				1C6F6293203E82AB00413FA7 /* FolderTableViewController.swift in Sources */,
+				1CA9E0E42117E533008B0FB7 /* FolderController.swift in Sources */,
 				1C728F4020896D6F00BCA031 /* Card.swift in Sources */,
 				1C6F6295203E84F800413FA7 /* Word.swift in Sources */,
 				1CAB6CA620745F8400CEE226 /* ResetPasswordController.swift in Sources */,
