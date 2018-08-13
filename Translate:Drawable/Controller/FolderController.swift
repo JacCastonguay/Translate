@@ -206,18 +206,39 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "showVocabCard"{
+        if segue.identifier == "showVocabCard" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! VocabCardViewController
-                //TODO: remove this, covered by lower
+                //First card.
                 destinationController.vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
                 
                 //Pass over entire array of searched words.
                 destinationController.wordArray = (searchController!.isActive) ? searchResults : vocabularyArray
+                
                 destinationController.index = indexPath.row
+                
+                destinationController.isShuffle = false
             }
         }
+        else if (segue.identifier == "PlayButton" || segue.identifier == "ShuffleButton") {
+            
+            //Set The controller we want to send info to
+            let destinationController = segue.destination as! VocabCardViewController
+            //Get array lengths for if we want to shuffle
+            let arrayLength = (searchController!.isActive) ? searchResults.count : vocabularyArray.count
+            //Get random number if shuffle, 0 if Play
+            let index = (segue.identifier == "ShuffleButton") ?  Int(arc4random_uniform(UInt32(arrayLength))) : 0
+            //Set The word we want to see
+            destinationController.vocabWord = (searchController!.isActive) ? searchResults[index] : vocabularyArray[index]
+            
+            //Pass over entire array of searched words and current index.
+            destinationController.wordArray = (searchController!.isActive) ? searchResults : vocabularyArray
+            destinationController.index = index
+            
+            
+            destinationController.isShuffle = (segue.identifier == "ShuffleButton") ? true : false
+            
+        }
+
     }
-
-
 }

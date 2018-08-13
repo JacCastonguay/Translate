@@ -136,11 +136,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Play"/>
+                                        <connections>
+                                            <segue destination="Bs7-5q-wDp" kind="show" identifier="PlayButton" id="YoP-N4-5yo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGg-wl-LN0">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Shuffle"/>
+                                        <connections>
+                                            <segue destination="Bs7-5q-wDp" kind="show" identifier="ShuffleButton" id="o7E-pS-OGy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -168,7 +174,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="N5O-KW-fY9">
                             <connections>
-                                <segue destination="rgO-0g-Oir" kind="presentation" id="qeC-kX-qbv"/>
+                                <segue destination="rgO-0g-Oir" kind="presentation" identifier="ShuffleButton" id="qeC-kX-qbv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -178,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBs-hZ-NJJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581.5999999999999" y="36.431784107946029"/>
+            <point key="canvasLocation" x="2100" y="65"/>
         </scene>
         <!--New Word Controller-->
         <scene sceneID="IuT-T8-Y05">
@@ -907,6 +913,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qeC-kX-qbv"/>
-        <segue reference="ixq-nf-ezN"/>
+        <segue reference="o7E-pS-OGy"/>
     </inferredMetricsTieBreakers>
 </document>

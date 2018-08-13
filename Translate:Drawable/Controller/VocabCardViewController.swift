@@ -29,7 +29,7 @@ class VocabCardViewController: UIViewController {
     var randomIndex: [Int]!
     var visibleWord:SingleLang = SingleLang(word: "")
     var OtherWord:SingleLang = SingleLang(word: "", textHint: "")
-    var isShuffle = false
+    var isShuffle: Bool!
     
 
     
@@ -49,6 +49,19 @@ class VocabCardViewController: UIViewController {
         //adBanner.adUnitID = "ca-app-pub-1650577861408675/7964305103"
         //adBanner.rootViewController = self
         //adBanner.load(request)
+        
+        //If shuffleButton got us here
+        if isShuffle == false {
+        wordView.shuffleButton.setTitleColor(UIColor(displayP3Red: 0, green: 122/255, blue: 1, alpha: 1.0), for: .normal)
+            print("shuffle is off now")
+            index = randomIndex[index]
+            randomIndex.sort()
+        } else {
+            wordView.shuffleButton.setTitleColor(.blue, for: .normal)
+            print("shuffle is on now")
+            randomIndex = randomIndex.shuffled()
+            
+        }
         
         //set visible word & otherWord
         SetEnglishVisible()
