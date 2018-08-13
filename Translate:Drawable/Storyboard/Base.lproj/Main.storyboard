@@ -120,7 +120,7 @@
                                         <connections>
                                             <outlet property="folderName" destination="fDf-oM-SXN" id="0Xv-kh-AIP"/>
                                             <outlet property="timesRight" destination="YGy-m0-NoO" id="HbR-BT-QPa"/>
-                                            <segue destination="Bs7-5q-wDp" kind="show" id="7PW-gb-fWn"/>
+                                            <segue destination="Bs7-5q-wDp" kind="show" identifier="showVocabCard" id="ixq-nf-ezN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -902,6 +902,6 @@
         <image name="save" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7PW-gb-fWn"/>
+        <segue reference="ixq-nf-ezN"/>
     </inferredMetricsTieBreakers>
 </document>
