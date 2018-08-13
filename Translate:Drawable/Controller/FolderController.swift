@@ -28,7 +28,7 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func logout(sender: UIButton) {
+    @IBAction func logout(sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
         } catch {
@@ -48,6 +48,7 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Array should have: " + String(vocabularyArray.count) + " cells.")
         //Ads
         //let request = GADRequest()
         //request.testDevices = [kGADSimulatorID, "3285462873ff73f1ce0b9c8e6c3a580a704ec628"]
