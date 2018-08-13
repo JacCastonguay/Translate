@@ -11,12 +11,12 @@ import CoreData
 import Firebase
 
 class FolderController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,  UISearchResultsUpdating {
-    //Added from suggestion on forum. this got rid of the error but may still persist. If so. probably going to scrap this class and put it all in a custom table view.
-    //Need to test, pretty sure this won't work because it won't have my abount of rows from SearchResults & vocabularyArray. Might want to switch over even before testing this since it won't work. Might be able to put 100% in table view custom class, if any controller class stuff is needed maybe put it here. searchController might be a bitch to figure out.
+
      @IBOutlet var tableView: UITableView!
     
     var fetchResultController: NSFetchedResultsController<WordMO>!
     var timesRightGoal = 3
+    var alternativeSide = true
     
     var searchController: UISearchController?
     var searchResults: [WordMO] = []
@@ -26,6 +26,15 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
     //Might not be in use. Appears unassigned in other file.
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func switchVisibleWord(sender: UIButton){
+        if alternativeSide == true {
+            alternativeSide = false
+        } else {
+            alternativeSide = true
+        }
+        tableView.reloadData()
     }
     
     @IBAction func logout(sender: UIBarButtonItem) {
@@ -89,10 +98,10 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     //Might not need this. Controller class asks for this but I think we good here. Leaving in a comment just in case.
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
+    /*override*/ func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
     
     
     /*override*/ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,6 +110,7 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
         } else {
             return vocabularyArray.count
         }
+        
     }
     
     
@@ -112,9 +122,7 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
         let vocabWord = (searchController!.isActive) ? searchResults[indexPath.row] : vocabularyArray[indexPath.row]
 
         // Configure the cell...
-        //        cell.folderName.text = vocabularyArray[indexPath.row].englishWord
-        //        cell.timesRight.text = String(vocabularyArray[indexPath.row].timesRight) + "/" + String(timesRightGoal)
-        cell.folderName.text = vocabWord.englishWord
+        cell.folderName.text = (alternativeSide) ? vocabWord.spanishWord : vocabWord.englishWord
         cell.timesRight.text = String(vocabWord.timesRight) + "/" + String(timesRightGoal)
 
         return cell
@@ -172,7 +180,6 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
             vocabularyArray = fetchedObjects as! [WordMO]
         }
     }
-    
     
     //animate changes
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
