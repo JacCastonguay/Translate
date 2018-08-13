@@ -60,7 +60,6 @@ class VocabCardViewController: UIViewController {
             wordView.shuffleButton.setTitleColor(.blue, for: .normal)
             print("shuffle is on now")
             randomIndex = randomIndex.shuffled()
-            
         }
         
         //set visible word & otherWord

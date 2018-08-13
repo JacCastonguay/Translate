@@ -230,14 +230,11 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
             let index = (segue.identifier == "ShuffleButton") ?  Int(arc4random_uniform(UInt32(arrayLength))) : 0
             //Set The word we want to see
             destinationController.vocabWord = (searchController!.isActive) ? searchResults[index] : vocabularyArray[index]
-            
             //Pass over entire array of searched words and current index.
             destinationController.wordArray = (searchController!.isActive) ? searchResults : vocabularyArray
             destinationController.index = index
-            
-            
+            //Send over whether or not user wants shuffle.
             destinationController.isShuffle = (segue.identifier == "ShuffleButton") ? true : false
-            
         }
 
     }
