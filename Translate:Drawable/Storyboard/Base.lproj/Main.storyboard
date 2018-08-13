@@ -166,7 +166,11 @@
                                 <action selector="logoutWithSender:" destination="1Hu-Nq-wry" id="KsG-ph-m8F"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="N5O-KW-fY9"/>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="N5O-KW-fY9">
+                            <connections>
+                                <segue destination="rgO-0g-Oir" kind="presentation" id="qeC-kX-qbv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="tBM-ga-ymT" id="SNK-Vc-4Qb"/>
@@ -902,6 +906,7 @@
         <image name="save" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="qeC-kX-qbv"/>
         <segue reference="ixq-nf-ezN"/>
     </inferredMetricsTieBreakers>
 </document>

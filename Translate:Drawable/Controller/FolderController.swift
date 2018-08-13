@@ -121,24 +121,24 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     //No override for this class. have to find a replacement protocal???
-//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
-//            //Delete from DB
-//            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-//                let context = appDelegate.persistentContainer.viewContext
-//                let wordToDelete = self.fetchResultController.object(at: indexPath)
-//                context.delete(wordToDelete)
-//                appDelegate.saveContext()
-//            }
-//            completionHandler(true)
-//        }
-//
-//        deleteAction.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
-//
-//        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
-//
-//        return swipeConfiguration
-//    }
+    /*override*/ func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            //Delete from DB
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                let context = appDelegate.persistentContainer.viewContext
+                let wordToDelete = self.fetchResultController.object(at: indexPath)
+                context.delete(wordToDelete)
+                appDelegate.saveContext()
+            }
+            completionHandler(true)
+        }
+
+        deleteAction.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+
+        return swipeConfiguration
+    }
     
     
     //Next couple funcs let us see our word after we've added it
