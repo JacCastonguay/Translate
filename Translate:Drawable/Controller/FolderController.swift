@@ -16,7 +16,7 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
     
     var fetchResultController: NSFetchedResultsController<WordMO>!
     var timesRightGoal = 3
-    var alternativeSide = true
+    var alternativeSide = false
     
     var searchController: UISearchController?
     var searchResults: [WordMO] = []
@@ -225,6 +225,8 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
                 destinationController.index = indexPath.row
                 
                 destinationController.isShuffle = false
+                
+                destinationController.isEnglishStart = !alternativeSide
             }
         }
         else if (segue.identifier == "PlayButton" || segue.identifier == "ShuffleButton") {
@@ -242,6 +244,9 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
             destinationController.index = index
             //Send over whether or not user wants shuffle.
             destinationController.isShuffle = (segue.identifier == "ShuffleButton") ? true : false
+            
+            destinationController.isEnglishStart = !alternativeSide
+
         }
 
     }

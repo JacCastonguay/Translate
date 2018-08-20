@@ -30,17 +30,20 @@ class VocabCardViewController: UIViewController {
     var visibleWord:SingleLang = SingleLang(word: "")
     var OtherWord:SingleLang = SingleLang(word: "", textHint: "")
     var isShuffle: Bool!
+    var isEnglishStart: Bool!
     
 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if isEnglishStart == nil{
+            isEnglishStart = true
+        }
         randomIndex = []
         for i in 0...(wordArray.count-1) {
             randomIndex.append(i)
         }
-        
         //randomIndex = randomIndex.shuffled()
         print(randomIndex)
         //Ads, not working right now
@@ -63,14 +66,21 @@ class VocabCardViewController: UIViewController {
         }
         
         //set visible word & otherWord
-        SetEnglishVisible()
+        SetSideVisible()
     }
     
-    fileprivate func SetEnglishVisible() {
+    fileprivate func SetSideVisible() {
+        
         visibleWord = SingleLang(word: vocabWord.englishWord!, textHint: vocabWord.englishTextHint, imageHint: vocabWord.englishImageHint)
         OtherWord = SingleLang(word: vocabWord.spanishWord!, textHint: vocabWord.spanishTextHint, imageHint: vocabWord.spanishImageHint)
+        //If Spanish side, swap
+        if isEnglishStart == false {
+            swap(&visibleWord, &OtherWord)
+        }
         //Set views&button
         UpdateViews()
+        
+        
     }
     
     //Reacts to any button being pressed (besides the top bar's back button)
@@ -102,7 +112,7 @@ class VocabCardViewController: UIViewController {
             index = 0
         }
         vocabWord = wordArray[randomIndex[index]]
-        SetEnglishVisible()
+        SetSideVisible()
         //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
     }
     
@@ -114,7 +124,7 @@ class VocabCardViewController: UIViewController {
             index = wordArray.count - 1
         }
         vocabWord = wordArray[index]
-        SetEnglishVisible()
+        SetSideVisible()
         //make a counter that once hits the length of the list brings user back to folder or "Notes completed" screen
     }
     
