@@ -190,7 +190,7 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
     func filterContent(for searchText: String){
         searchResults = vocabularyArray.filter({ (vocabularyArrayItem) -> Bool in
             //change to chapter once created to search for vocab from chapters
-            if let englishWord = vocabularyArrayItem.englishWord {
+            if let englishWord = vocabularyArrayItem.chapter {
                 let isMatch = englishWord.localizedCaseInsensitiveContains(searchText)
                 return isMatch
             }
