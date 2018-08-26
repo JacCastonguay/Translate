@@ -124,7 +124,8 @@ class FolderController: UIViewController, UITableViewDataSource, UITableViewDele
         // Configure the cell...
         cell.folderName.text = (alternativeSide) ? vocabWord.spanishWord : vocabWord.englishWord
         cell.timesRight.text = String(vocabWord.timesRight) + "/" + String(timesRightGoal)
-
+        cell.chapter.text = (vocabWord.chapter == nil) ? "<no chapter>" : vocabWord.chapter
+        
         return cell
     }
     

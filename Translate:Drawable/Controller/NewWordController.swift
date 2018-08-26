@@ -45,6 +45,13 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         }
     }
     
+    @IBOutlet var textChapter: RoundedTextField! {
+        didSet {
+            textChapter.tag = 5
+            textChapter.delegate = self
+            textChapter.text = "Chapter "
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,10 +131,10 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
         //TODO: see if passing null image leads to any errors.
         if(imageSelected){
             PostService.shared.UploadImage(hintImage: self.imageHint.image!, englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
-            Card.addLocaclly(englishWord: self.englishWordField.text!, englishTextHint: self.textHintForEnglishWord.text!, spanishWord: self.spanishWordField.text!, spanishTextHint: self.textHintForSpanishWord.text!, englishImageHint:self.imageHint.image!)
+            Card.addLocaclly(englishWord: self.englishWordField.text!, englishTextHint: self.textHintForEnglishWord.text!, spanishWord: self.spanishWordField.text!, spanishTextHint: self.textHintForSpanishWord.text!, englishImageHint:self.imageHint.image!, chapter: textChapter.text!)
         } else {
             PostService.shared.uploadNonImage(englishWord: self.englishWordField.text!, spanishWord: self.spanishWordField.text!, textHintForEnglishWord: self.textHintForEnglishWord.text!, textHintForSpanishWord: self.textHintForSpanishWord.text!)
-            Card.addLocaclly(englishWord: self.englishWordField.text!, englishTextHint: self.textHintForEnglishWord.text!, spanishWord: self.spanishWordField.text!, spanishTextHint: self.textHintForSpanishWord.text!)
+            Card.addLocaclly(englishWord: self.englishWordField.text!, englishTextHint: self.textHintForEnglishWord.text!, spanishWord: self.spanishWordField.text!, spanishTextHint: self.textHintForSpanishWord.text!, chapter: textChapter.text!)
 
         }
         
@@ -169,7 +176,7 @@ class NewWordController: UITableViewController, UITextFieldDelegate, UIImagePick
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 7
     }
 
 }

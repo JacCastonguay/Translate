@@ -108,16 +108,26 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0m-z7-5qg" userLabel="chapter">
+                                                    <rect key="frame" x="25" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.6612356901799894" green="0.6612356901799894" blue="0.6612356901799894" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fDf-oM-SXN" firstAttribute="centerY" secondItem="tCg-g1-jdo" secondAttribute="centerY" id="7g8-vz-V1D"/>
                                                 <constraint firstItem="fDf-oM-SXN" firstAttribute="centerX" secondItem="tCg-g1-jdo" secondAttribute="centerX" id="9yf-Ad-PJ2"/>
                                                 <constraint firstItem="YGy-m0-NoO" firstAttribute="centerY" secondItem="tCg-g1-jdo" secondAttribute="centerY" id="KJR-dc-m1j"/>
                                                 <constraint firstAttribute="trailing" secondItem="YGy-m0-NoO" secondAttribute="trailing" constant="10" id="MLS-E8-JzB"/>
+                                                <constraint firstItem="d0m-z7-5qg" firstAttribute="centerY" secondItem="tCg-g1-jdo" secondAttribute="centerY" id="Oh9-RB-8Tf"/>
                                                 <constraint firstItem="YGy-m0-NoO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tCg-g1-jdo" secondAttribute="leading" constant="20" symbolic="YES" id="gYJ-FS-j4w"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d0m-z7-5qg" secondAttribute="trailingMargin" id="jw3-Kt-b8n"/>
+                                                <constraint firstItem="d0m-z7-5qg" firstAttribute="leading" secondItem="tCg-g1-jdo" secondAttribute="leadingMargin" constant="10" id="wdy-1K-rsH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="chapter" destination="d0m-z7-5qg" id="zca-wx-OmC"/>
                                             <outlet property="folderName" destination="fDf-oM-SXN" id="0Xv-kh-AIP"/>
                                             <outlet property="timesRight" destination="YGy-m0-NoO" id="HbR-BT-QPa"/>
                                             <segue destination="Bs7-5q-wDp" kind="show" identifier="showVocabCard" id="ixq-nf-ezN"/>
@@ -182,7 +192,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="N5O-KW-fY9">
                             <connections>
-                                <segue destination="rgO-0g-Oir" kind="presentation" identifier="ShuffleButton" id="qeC-kX-qbv"/>
+                                <segue destination="rgO-0g-Oir" kind="presentation" identifier="" id="qeC-kX-qbv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -381,6 +391,39 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="88" id="0Mg-sO-Ye8">
+                                        <rect key="frame" x="0.0" y="596" width="375" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Mg-sO-Ye8" id="uaO-e3-SrV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="EsI-9k-0pC">
+                                                    <rect key="frame" x="2" y="5" width="371" height="81.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chapter/section (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSH-TS-dQo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="371" height="38"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Chapter " placeholder="(None)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eA9-3C-Nxc" customClass="RoundedTextField" customModule="Translate_Drawable" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="44" width="371" height="37.5"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EsI-9k-0pC" firstAttribute="leading" secondItem="uaO-e3-SrV" secondAttribute="leading" constant="2" id="01I-6y-JsS"/>
+                                                <constraint firstItem="EsI-9k-0pC" firstAttribute="top" secondItem="uaO-e3-SrV" secondAttribute="top" constant="5" id="Bg5-bK-JWZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="EsI-9k-0pC" secondAttribute="trailing" constant="2" id="Gfi-f6-NgZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="EsI-9k-0pC" secondAttribute="bottom" constant="1" id="pNB-hb-oKt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -407,6 +450,7 @@
                         <outlet property="englishWordField" destination="DMN-vr-gSD" id="HyV-Ey-WtA"/>
                         <outlet property="imageHint" destination="oz2-Tl-8ek" id="2kE-Cp-pDE"/>
                         <outlet property="spanishWordField" destination="iz3-HT-BBZ" id="8P9-xV-2RD"/>
+                        <outlet property="textChapter" destination="eA9-3C-Nxc" id="qIt-py-lwc"/>
                         <outlet property="textHintForEnglishWord" destination="Gw6-dj-lZV" id="jCD-Sp-5Co"/>
                         <outlet property="textHintForSpanishWord" destination="oVj-Cc-0V5" id="yQU-Jy-OtR"/>
                     </connections>
@@ -921,6 +965,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qeC-kX-qbv"/>
-        <segue reference="o7E-pS-OGy"/>
+        <segue reference="YoP-N4-5yo"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -59,7 +59,7 @@ struct Card {
         self = Card(postId: postId, imageHintForEngFileURL: imageHintForEngFileURL, user: user, englishWord: englishWord, spanishWord: spanishWord, englishTextHint: englishTextHint, spanishTextHint: spanishTextHint, timesRight: timesRight, timestamp: timestamp)
     }
     
-    static func addLocaclly(englishWord:String, englishTextHint:String, spanishWord:String, spanishTextHint:String, englishImageHint:UIImage? = nil) -> Void {
+    static func addLocaclly(englishWord:String, englishTextHint:String, spanishWord:String, spanishTextHint:String, englishImageHint:UIImage? = nil, chapter:String) -> Void {
         var word: WordMO!
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             word = WordMO(context: appDelegate.persistentContainer.viewContext)
@@ -68,6 +68,7 @@ struct Card {
             word.spanishWord = spanishWord
             word.spanishTextHint = spanishTextHint
             word.timesRight = 0
+            word.chapter = chapter
             
             if let img = englishImageHint {
                 print("AN ATTEMP WAS MADE TO CONVERT img")
